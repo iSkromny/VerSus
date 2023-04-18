@@ -233,34 +233,6 @@ function getTownResp(townTier)
 
 end
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 -- Описывает стартовую зону
 function getStartZone(zoneId, playerRace, zoneSize)
 
