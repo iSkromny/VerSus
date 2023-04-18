@@ -183,8 +183,8 @@ local ArtT1 = {'g001ig0071', 'g001ig0611', 'g001ig0418', 'g000ig2001', 'g000ig20
 local JewelT1 = {'g001ig0101', 'g000ig4008', 'g000ig3008', 'g001ig0428', 'g000ig4006', 'g001ig0494', 'g000ig4004', 'g001ig0495', 'g001ig0497', 'g000ig4003', 'g000ig4005', 
     'g000ig4001', 'g000ig4002', 'g001ig0493'}
 
-
-function getTownResp(townTier)
+-- Города т1-т5
+function getTown(townTier)
     -- local zoneTown = { }
     local expValue = { }
 
@@ -232,6 +232,19 @@ function getTownResp(townTier)
     }
 
 end
+
+function getRuins(ruinsTier, ruinsGold, ruinsGusrd, ruinsItem)
+
+    return {
+        gold = ruinsGold,
+        guard = ruinsGusrd,
+        loot = {
+            items = ruinsItem,
+        }
+    }
+end
+
+
 
 -- Описывает стартовую зону
 function getStartZone(zoneId, playerRace, zoneSize)
@@ -323,22 +336,26 @@ function getStartZone(zoneId, playerRace, zoneSize)
         
         -- Руины в стартовой зоне
         ruins = {
-            {
-                gold = { min = 300, max = 350 },
-                loot = {
-                    itemTypes = { Item.Armor },
-                    value = {min = 300, max = 300},
-                    itemValue = {min = 300, max = 300}
+            getRuins(1, { min = 300, max = 350}, Subrace0, ArtT1)},
+        -- }
+        
+        -- {
+        --     {
+        --         gold = { min = 300, max = 350 },
+        --         loot = {
+        --             itemTypes = { Item.Armor },
+        --             value = {min = 300, max = 300},
+        --             itemValue = {min = 300, max = 300}
 
-                },
-                guard = {
-                    value = { min = 320, max = 380 },
-                    subraceTypes = Subrace1,
-                }
-            }
-        },
+        --         },
+        --         guard = {
+        --             value = { min = 320, max = 380 },
+        --             subraceTypes = Subrace1,
+        --         }
+        --     }
+        -- },
         -- Города в стартовой зоне
-        towns = { getTownResp(1), getTownResp(2)}
+        towns = { getTown(1), getTown(2)}
     }
 end
 
@@ -394,7 +411,7 @@ function getBigZone(zoneId, zoneSize)
         },
         
         -- Города
-		towns = { getTownResp(3), getTownResp(4)}
+		towns = { getTown(3), getTown(4)}
 	}
 end
 
@@ -432,7 +449,7 @@ function getVSZone(zoneId, zoneSize)
 		type = Zone.Treasure,
 		size = zoneSize,
         mines = getMinesVS,
-        towns = { getTownResp(5) },
+        towns = { getTown(5) },
         stacks = {
             -- 5 отрядов варваров и нейтральных людей, 650 опыта каждый
             {
