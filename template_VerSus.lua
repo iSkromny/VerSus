@@ -18,17 +18,15 @@
 --  серая       большая      синяя 
 --  чёрная      большая2     зелёная
 --  жёлтая       центр       жёлтая
+
+-- При генерации желательно добиться расстановки, где жёлтая зона будет располагаться по центру и соединена (визуально) со всеми большими зонами:
+-- Наилучшее расположение зон при генерации:
 -----------------------------------------------
 --  серая--<------------бирюзовая--<-----красная(респ)
 --  чёрная---------->--\\-жёлтая-\\--<---зелёная--/
 --  --\белая(респ)----->--розовая----->---синяя
 -----------------------------------------------
 -- !!!Жёлтой зоны должны касаться зелёная, синяя, серая и чёрная зоны!!!
-
--- При генерации желательно добиться расстановки, где розовая зона будет располагаться по центру и соединена (визуально) со всеми большими зонами:
--- Наилучшее расположение зон при генерации:
--- -- -- -- 
-
 -- -- -- -- 
 -- При несоблюдении расстановки зон может случиться, что из одной из больших зон не будет выхода в центр, тем самым игрок упрётся в тупик.
 ------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -44,8 +42,6 @@ local Squad3 = { Subrace.Elf, Subrace.Dwarf, Subrace.Undead, Subrace.Heretic, Su
 
 local Squad4 = { Subrace.Elf, Subrace.Dwarf, Subrace.Undead, Subrace.Heretic, Subrace.Human, Subrace.NeutralMarsh, Subrace.NeutralGreenSkin, Subrace.NeutralWolf, 
                     Subrace.Neutral, Subrace.NeutralBarbarian, Subrace.NeutralWater, Subrace.NeutralHuman, Subrace.NeutralElf }
-
--- local Squad5 = { id = 'g001uu7593', id = 'g001uu7555', id = 'g000uu6001', id = 'g000uu7503', id = 'g000uu8195', id = 'g000uu8153', id = 'g001uu8259', id = 'g006uu1016', id = 'g001uu7541', id = 'g001uu7601', id = 'g001uu8298', id = 'g001uu7585' }
 
 local SquadGO = { Subrace.NeutralDragon, Subrace.NeutralMarsh, Subrace.Neutral, Subrace.NeutralHuman }
 --------------------
@@ -322,10 +318,9 @@ local ElexirPermanent = { -- 6050value 200-550
     local ElexirPermanentT2 = { -- 6700value 600-1200
     'g001ig0561', -- +25% udar na sebya         600
     'g001ig0523', -- +10%exp                    600 
-    'g001ig0034', -- 10hp otryad                600
+    
     'g000ig0004', -- +10arm                     600
     'g001ig0130', -- 22%regen                   700
-    'g001ig0025', -- aura +5%hp all -10%hp      700
     'g001ig0548', -- +10%krit                   700
     'g001ig0018', -- +5%regen                   750
     'g001ig0536', -- ataka zdorovyem            850
@@ -343,21 +338,26 @@ local ElexirPermanent = { -- 6050value 200-550
 local AuraPermanent = {
     --all
     'g001ig0026', -- aura +5%regen -15%hp       300
-    'g001ig0027', -- aura +5arm -15%(7.5)hp     400
-    'g001ig0563', -- aura +5%krit -15%(7.5%)    400
-    'g001ig0028', -- aura +5%hp -15%            400
+    'g001ig0027', -- aura +5arm -15%(7.5)hp     700
+    'g001ig0563', -- aura +5%krit -15%(7.5%)    600
+    'g001ig0028', -- aura +5%hp -15%            600
+    'g001ig0034', -- 10hp otryad                600
     'g001ig0031', -- aura +5%acc -15%hp         400
-    'g001ig0029', -- aura +5%dmg -15%hp         400
-    'g001ig0030', -- aura +5%ini -15%hp         400
+    'g001ig0029', -- aura +5%dmg -15%hp         600
+    'g001ig0030', -- aura +5%ini -15%hp         600
     'g001ig0033', -- aura +5hp                  400
-    'g001ig0564', -- aura +5%krit -10%hp        500
-    'g001ig0024', -- aura +5%arm -10%hp         550
-    'g001ig0021', -- aura +5%dmg -10%hp         550
-    'g001ig0023', -- aura +5%ini -10%hp         550
+    'g001ig0564', -- aura +5%krit -10%hp        600
+    'g001ig0017', -- aura +5%regen -10%hp       600
+    'g001ig0024', -- aura +5%arm -10%hp         800
+    'g001ig0021', -- aura +5%dmg -10%hp         800
+    'g001ig0023', -- aura +5%ini -10%hp         800
     'g001ig0022', -- aura +5acc -10%hp          550
+
+    'g001ig0025', -- aura +5%hp all -10%hp      850
+    'g001ig0019', -- aura vampirizm +10%        900
     'g001ig0032', -- aura +5%hp                 1000
-    'g001ig0016', -- aura ward weapon -25%hp    1800
-    'g001ig0565', -- aura +5% krit              2000
+    --'g001ig0016', -- aura ward weapon -25%hp    1800  -- magazin
+    --'g001ig0565', -- aura +5% krit              1800  -- magazin
 }
 
 local Permanentskill = {
@@ -368,8 +368,8 @@ local Permanentskill = {
     'g001ig0524', -- wand                       600
     'g001ig0529', -- znanie sfer                600
     'g001ig0526', -- znamenosec                 600
-    'g001ig0501', -- hod po lesu                900
-    'g001ig0522', -- nepodkupnost               1500
+    'g001ig0501', -- hod po lesu                600
+    -- 'g001ig0522', -- nepodkupnost               1500 -- magazin
 }
 
 local ProtectPermanent = {
@@ -393,16 +393,20 @@ local ProtectPermanent = {
     'g001ig0340', -- ward ot prevrascheniya     700
     'g001ig0336', -- ward ot okamen             700
     'g001ig0324', -- ward weapon                800
-    'g001ig0356', -- ward uron                  1000
+    -- 'g001ig0356', -- ward uron                  1000  -- magazin
 
 }
 
 local AuraPermanentProtect = {
-    'g001ig0013', -- aura ward water -15%hp     950
-    'g001ig0015', -- aura ward air -15%hp       950
-    'g001ig0014', -- aura ward earth -15%hp     950
+    'g001ig0009', -- aura ward mind -15%hp      950
     'g001ig0011', -- aura ward death -15%hp     950
     'g001ig0012', -- aura ward fire -15%hp      950
+    'g001ig0013', -- aura ward water -15%hp     950
+    'g001ig0014', -- aura ward earth -15%hp     950
+    'g001ig0015', -- aura ward air -15%hp       950
+    
+    
+    
 }
 
 -- талисманы в стольне
@@ -429,13 +433,21 @@ local Talismant2 = {
 
 	local scroll = {
         'g001ig0407', -- призыв толстого беса на 2 дня                                      100
+        'g000ig5022', -- обычно ходит по лесу                                               100
         'g000ig5002', -- +10%ini                                                            150
-        'g000ig5023', -- +10%dmg                                                            150 --- poslednee
+        'g000ig5106', -- -10%ini                                                            150
+        'g001ig0248', -- -10%ini                                                            150
+        'g000ig5023', -- +10%dmg                                                            150
+        'g000ig5003', -- +10%dmg                                                            150
+        'g000ig5101', -- -10%dmg                                                            150
+        'g000ig5064', -- -5%ini -5%dmg                                                      150
         'g000ig5045', -- -10arm                                                             150
         'g000ig5065', -- -10arm                                                             150
+        'g001ig0252', -- -15arm                                                             150
         'g000ig5024', -- 15 magic damage                                                    150
         'g000ig5043', -- 15 magic damage                                                    150
         'g000ig5044', -- 15 magic damage                                                    150
+        'g000ig5063', -- 15 magic damage                                                    150
         'g000ig5042', -- fantom gonchey                                                     150
         'g000ig5041', -- gonchaya                                                           150
         'g000ig5097', -- 15 magic damage                                                    150
@@ -443,8 +455,11 @@ local Talismant2 = {
         'g000ig5062', -- 15 magic damage                                                    150
         'g001ig0247', -- -10%acc                                                            150
         'g001ig0073', -- -3 клетки обзора в области 7х7                                     150
+        'g001ig0072', -- +3 клетки обзора                                                   150
         'g001ig0195', -- навык мудрость                                                     150
         'g000ig5021', -- 7arm                                                               150
+        'g001ig0250', -- 7arm                                                               150
+        'g000ig5102', -- +15hp                                                              150
         'g000ig5025', -- призыв Рух                                                         200
         'g000ig5061', -- призыв скелета                                                     200
         'g000ig5098', -- призыв Энта малого                                                 200
@@ -458,14 +473,16 @@ local Talismant2 = {
         'g000ig5046', -- beliarha                                                           250
         'g001ig0254', -- +10%acc +10%dmg                                                    250
         'g000ig5050', -- -15%ini                                                            250
+        'g001ig0255', -- +15%ini                                                            250
         'g000ig5049', -- уменьшает на 15% урон                                              250
         'g001ig0253', -- уменьшает на 15% урон                                              250
         'g000ig5069', -- уменьшает на 15% урон                                              250
-        'g001ig0577', -- лишает отряд резиста к огню, иммум меняет на резист                250
         'g000ig5048', -- 30 magic damage                                                    250
         'g001ig0117', -- 30 magic damage                                                    250
         'g000ig5070', -- 30 magic damage                                                    250
         'g000ig5028', -- 30 magic damage                                                    250
+        'g000ig5105', -- 30dmg водой                                                        250
+        'g000ig5067', -- 30 magic damage                                                    250
         'g000ig5030', -- открывает участок карты 7x7                                        250 
         'g000ig5119', -- уничтожает жезл                                                    250
         'g001ig0091', -- уничтожает небольшой участок леса                                  250
@@ -475,15 +492,18 @@ local Talismant2 = {
         'g000ig5009', -- открывает участок карты 5x5                                        250
         'g000ig5007', -- восстанавливает 30 ОЗ                                              250
         'g000ig5029', -- восстанавливает 40 ОЗ                                              250
-       
+        'g000ig5068', -- окутывает туманом часть карты, защищает от заклов                  250
         'g001ig0194', -- +15% к скидке у торговца                                           250
         'g001ig0256', -- +15%dmg                                                            250
-        -- 'g000ig5027', -- мореплавания не один день                                           250 -- запрещено
+        'g000ig5104', -- 30 magic damage                                                    250
         'g001ig0580', -- лишает резиста к воздуху, иммун меняет на резист                   250
+        'g001ig0577', -- лишает отряд резиста к огню, иммум меняет на резист                250
         'g001ig0576', -- лишает резиста к смерти, иммун меняет на резист                    250
         'g001ig0578', -- лишает резиста к воде, иммун меняет на резист                      250
-        'g000ig5104', -- 30 magic damage                                                    250
-        'g001ig0575', -- лишает резиста к жизни, иммун меняет на резист                     275   
+        'g001ig0574', -- лишает резиста к разуму, иммун меняет на резист                    250
+        'g001ig0579', -- лишает резиста к земле, иммун меняет на резист                     250
+        'g001ig0575', -- лишает резиста к жизни, иммун меняет на резист                     275
+        'g001ig0573', -- лишает резаста к оружию, иммун меняет на резист                    275   
         'g001ig0568', -- +25% шанса принять атаку на себя вместо поина позади себя          275
         'g001ig0569', -- +15% опыта за убийство                                             275
         'g000ig5114', -- -30arm                                                             300
@@ -496,6 +516,8 @@ local Talismant2 = {
         'g001ig0093', -- +25% vamp                                                          300
         'g000ig5014', -- 50 magic damage                                                    300
         'g000ig5072', -- 50 magic damage                                                    300
+        'g000ig5093', -- 40 урона в области                                                 300
+        'g000ig5081', -- 40 урона в области                                                 300
         'g000ig5034', -- защищает от понижения урона                                        300
         'g000ig5110', -- восстанавливает 60 ОЗ в области                                    300
         'g000ig5057', -- защита от полиформа                                                300
@@ -503,22 +525,20 @@ local Talismant2 = {
         'g000ig5088', -- увеличивает количество опыта в бою                                 300
         'g000ig5073', -- увеличивает макс HP на 20%                                         300
         'g000ig5013', -- +15%acc +15%dmg                                                    300
-
+        'g000ig5107', -- создаёт участок леса 4х4                                           300
         'g000ig5066', -- призыв Хуорна                                                      300
         'g000ig5008', -- призыв живого доспеха                                              300
         'g000ig5103', -- призыв Энта                                                        300
-
+        'g000ig5074', -- окутывает пыльючасть карты, защищает от заклов                     300
         'g000ig5052', -- окутывает туманов участок карты                                    350
         'g000ig5089', -- -15%acc -15%dmg                                                    350
         'g001ig0570', -- -25% опыта в области 7х7                                           350
-        'g000ig5020', -- +10%acc +5%dmg +5%ini
-
+        'g000ig5020', -- +10%acc +5%dmg +5%ini                                              350
         'g001ig0076', -- вызов Каменной сущности                                            400
         'g001ig0075', -- вызов Ледяной сущности                                             400
         'g001ig0074', -- вызов Сущности Бури                                                400
         'g001ig0077', -- вызов Сущности пламени                                             400
         'g001ig0078', -- вызов стихийного голема                                            400
-
         'g000ig5040', -- излечивает на 100                                                  400
         'g000ig5055', -- -33%acc                                                            400
         'g000ig5090', -- 60dmg в области                                                    400
@@ -529,6 +549,7 @@ local Talismant2 = {
         'g000ig5001', -- защита от вохдуха                                                  400
         'g000ig5010', -- защита от земли                                                    400
         'g000ig5016', -- защита от огня                                                     400
+        'g001ig0251', -- защита от огня                                                     400
         'g000ig5011', -- защита от разума                                                   400
         'g000ig5077', -- 75 magic damage                                                    400
         'g000ig5017', -- +-33%dmg                                                           400
@@ -541,10 +562,8 @@ local Talismant2 = {
         'g000ig5085', -- скадка 20%                                                         400
         'g001ig0123', -- окутывает участок карты                                            400
         'g001ig0586', -- лишается неподкупности и теряет 20% сопротивления ворам            425
-
         'g000ig5018', -- защита от смерти                                                   450
         'g001ig0085', -- создаёт большой участок воды                                       450
-
         'g000ig5031', -- призыв Валькирию                                                   500
         'g000ig5015', -- призыв Голем                                                       500
         'g000ig5071', -- призыв Кошмара                                                     500
@@ -553,35 +572,26 @@ local Talismant2 = {
         'g000ig5120', -- мгновенное отступление                                             500
         'g000ig5096', -- 35% вампиризма                                                     500
         'g001ig0094', -- многовенное отступление                                            500
-        -- 'g000ig5113', -- +20% moov в области 3х3                                            500 запрещён
         'g000ig5060', -- 125 повреждений магией                                             500
         'g000ig5080', -- 125 повреждений магией                                             500
         'g000ig5059', -- summon fantom adskiy mstitel                                       500
         'g000ig5087', -- без штрафа по воде                                                 500
-        -- 'g000ig5051', -- делает невидимым, пока не вступит в бой                             500 запрещён
         'g000ig5019', -- 125magic dmg                                                       500
         'g000ig5076', -- -33%dmg                                                            500
         'g000ig5079', -- защита от оружия                                                   500
         'g001ig0572', -- +20%krita                                                          500
         'g000ig5039', -- неподкупность                                                      500
-    
         'g000ig5038', -- вызов каменного предка                                             600
         'g000ig5116', -- +50hp                                                              600
+        'g000ig5075', -- -33%ini отряду                                                     600
         'g000ig5058', -- fantom adskiy mstitel                                              700
         'g000ig5091', -- -33%ini в области                                                  700
-
         'g000ig5117', -- вызов Верданта                                                     700
         'g000ig5078', -- вызов Танатоса                                                     700
         'g001ig0080', -- вызов Вестника немощи                                              700
         'g001ig0081', -- вызов Вестника Перемен                                             700
         'g001ig0079', -- вызов Вестника поглощения                                          700
-
-        
-        -- 'g000ig5094', -- уменьшает очки движения в области на 50%                            800 запрещён
-        -- 'g000ig5053', -- -100% moov for day                                                  900 запрещён
-        -- 'g000ig5092', -- делает невидимым все отряды, пока не вступят в бой                  1000 запрещён
-        -- 'g000ig5032', -- +60% moov                                                           1000 запрещён
-        -- 'g000ig5083', -- открывает всю карту                                                 1000 запрещён
+        'g000ig5035', -- +23%arm                                                            1000
         'g001ig0171', -- все отряды получают 25% от нанесённого урона в виде здоровья       1000
         'g001ig0160', -- защита от воды для всех отрядов                                    1000
         'g001ig0159', -- защита от воздуха для всех отрядов                                 1000
@@ -592,20 +602,9 @@ local Talismant2 = {
         'g001ig0169', -- +20%acc всем отрядам                                               1000
         'g001ig0168', -- на 20% меньше повреждений всем отрядам                             1000
         'g001ig0167', -- на 20% больше повреждение всем отрядам                             1000
-        '',
-        '',
         'g001ig0170', -- +50hp всем отрядам                                                 1500
         'g001ig0164', -- защита от смерти для всех отрядов                                  2000
         'g001ig0165', -- защита от оружия для всех отрядов                                  2000
-        '',
-        '',
-        '',
-        '',
-        '',
-        '',
-
-
-
     }
 
 
@@ -758,11 +757,16 @@ function getReward(Type, Zone)
 
     if Type == 'town' and Zone == 'StartZonet1' then
         table.insert(rewardItems, { id = 'g000ig0005', min = 3, max = 4 } ) -- heal 50
-        table.insert(rewardItems, { id = smallValuable[math.random(#smallValuable)], min = 1, max = 2 } ) -- valuable 50/75/100
+        table.insert(rewardItems, { id = smallValuable[math.random(#smallValuable)], min = 1, max = 1 } ) -- valuable 50/75/100
         table.insert(rewardItems, { id = ElexirProtection[math.random(#ElexirProtection)], min = 1, max = 1 } )
         table.insert(rewardItems, { id = ElexirProtection[math.random(#ElexirProtection)], min = 1, max = 1 } )
         table.insert(rewardItems, { id = ElexirProtection[math.random(#ElexirProtection)], min = 1, max = 1 } ) 
         table.insert(rewardItems, { id = wand[math.random(#wand)], min = 1, max = 1 } ) --
+        table.insert(rewardItems, { id = Talismant1[math.random(#Talismant1)], min = 1, max = 1 } )
+
+    elseif Type == 'guard' and Zone == 'townt1' then
+        table.insert(rewardItems, { id = 'g000ig0005', min = 2, max = 2 } ) -- heal 50
+        table.insert(rewardItems, { id = ElexirProtection[math.random(#ElexirProtection)], min = 1, max = 1 } ) 
         table.insert(rewardItems, { id = Talismant1[math.random(#Talismant1)], min = 1, max = 1 } )
 
     elseif Type == 'town' and Zone == 'StartZonet2' then
@@ -776,6 +780,11 @@ function getReward(Type, Zone)
         table.insert(rewardItems, { id = Talismant2[math.random(#Talismant2)], min = 1, max = 1 } ) 
         table.insert(rewardItems, { id = mediumValuable[math.random(#mediumValuable)], min = 1, max = 1 } ) -- valuable 125/150/175/200
 
+    elseif Type == 'guard' and Zone == 'townt2' then
+        table.insert(rewardItems, { id = 'g001ig0180', min = 2, max = 3 } ) -- heal 25
+        table.insert(rewardItems, { id = 'g001ig0378', min = 1, max = 1 } ) -- heal 75
+        table.insert(rewardItems, { id = 'g000ig0006', min = 1, max = 1 } ) -- heal 100
+
     elseif Type == 'town' and Zone == 'BigZonet3' then
         table.insert(rewardItems, { id = 'g000ig0001', min = 1, max = 2 } ) -- res
         table.insert(rewardItems, { id = 'g001ig0378', min = 2, max = 3 } ) -- heal 75
@@ -783,11 +792,17 @@ function getReward(Type, Zone)
         table.insert(rewardItems, { id = 'g000ig0018', min = 2, max = 2 } ) -- heal 200
         table.insert(rewardItems, { id = mediumballmana[math.random(#mediumballmana)], min = 1, max = 1 } ) -- 100 mana
         table.insert(rewardItems, { id = JewelT2[math.random(#JewelT2)], min = 1, max = 1 } )
-        table.insert(rewardItems, { id = BannerT2[math.random(#BannerT2)], min = 1, max = 1 } )
         table.insert(rewardItems, { id = Elexir[math.random(#Elexir)], min = 1, max = 2 } )
         table.insert(rewardItems, { id = ElexirProtection[math.random(#ElexirProtection)], min = 1, max = 1 } ) 
+        table.insert(rewardItems, { id = BannerT2[math.random(#BannerT2)], min = 1, max = 1 } )
         table.insert(rewardItems, { id = ElexirProtection[math.random(#ElexirProtection)], min = 1, max = 1 } )
         table.insert(rewardItems, { id = mediumValuable[math.random(#mediumValuable)], min = 1, max = 1 } ) -- valuable 125/150/175/200
+
+    elseif Type == 'guard' and Zone == 'townt3' then
+        table.insert(rewardItems, { id = wand[math.random(#wand)], min = 1, max = 1 } ) --
+        table.insert(rewardItems, { id = weakOrbs[math.random(#weakOrbs)], min = 1, max = 1 } )
+        table.insert(rewardItems, { id = weakOrbs[math.random(#weakOrbs)], min = 1, max = 1 } )
+        table.insert(rewardItems, { id = mediumOrbs[math.random(#mediumOrbs)], min = 1, max = 1 } )
 
     elseif Type == 'town' and Zone == 'BigZonet4' then
         table.insert(rewardItems, { id = 'g000ig0001', min = 2, max = 2 } ) -- res
@@ -803,6 +818,10 @@ function getReward(Type, Zone)
         table.insert(rewardItems, { id = TravelT3[math.random(#TravelT3)], min = 1, max = 1 } )
         table.insert(rewardItems, { id = Talismant2[math.random(#Talismant2)], min = 1, max = 1 } )
 
+    elseif Type == 'guard' and Zone == 'townt4' then
+        table.insert(rewardItems, { id = weakOrbs[math.random(#weakOrbs)], min = 1, max = 1 } )
+        table.insert(rewardItems, { id = mediumOrbs[math.random(#mediumOrbs)], min = 1, max = 1 } )
+
 
     elseif Type == 'town' and Zone == 'VSZonet4' then
         table.insert(rewardItems, { id = 'g000ig0006', min = 3, max = 3 } ) -- heal 100
@@ -813,8 +832,8 @@ function getReward(Type, Zone)
         table.insert(rewardItems, { id = Elexir[math.random(#Elexir)], min = 1, max = 1 } )
         table.insert(rewardItems, { id = ElexirProtection[math.random(#ElexirProtection)], min = 1, max = 1 } ) 
         table.insert(rewardItems, { id = Elexir[math.random(#Elexir)], min = 1, max = 1 } )
-        table.insert(rewardItems, { id = Elexir[math.random(#Elexir)], min = 1, max = 1 } )
         table.insert(rewardItems, { id = strongOrbs[math.random(#strongOrbs)], min = 1, max = 1 } ) 
+        table.insert(rewardItems, { id = Elexir[math.random(#Elexir)], min = 1, max = 1 } )
         table.insert(rewardItems, { id = strongOrbs[math.random(#strongOrbs)], min = 1, max = 1 } ) 
 
 
@@ -826,33 +845,44 @@ function getReward(Type, Zone)
         table.insert(rewardItems, { id = Elexir[math.random(#Elexir)], min = 1, max = 1 } )
         table.insert(rewardItems, { id = ElexirProtection[math.random(#ElexirProtection)], min = 1, max = 1 } ) 
         table.insert(rewardItems, { id = Elexir[math.random(#Elexir)], min = 1, max = 1 } )
+        table.insert(rewardItems, { id = strongOrbs[math.random(#strongOrbs)], min = 1, max = 1 } )
         table.insert(rewardItems, { id = Elexir[math.random(#Elexir)], min = 1, max = 1 } )
-        table.insert(rewardItems, { id = strongOrbs[math.random(#strongOrbs)], min = 1, max = 1 } )
-        table.insert(rewardItems, { id = strongOrbs[math.random(#strongOrbs)], min = 1, max = 1 } )
         table.insert(rewardItems, { id = ElexirPermanentT2[math.random(#ElexirPermanentT2)], min = 1, max = 1 } )
+        table.insert(rewardItems, { id = strongOrbs[math.random(#strongOrbs)], min = 1, max = 1 } )
         table.insert(rewardItems, { id = ElexirPermanentT2[math.random(#ElexirPermanentT2)], min = 1, max = 1 } ) 
 
 
     -- elseif Typeobject == 'merchants' and Zoneobject == 'StartZonet1' then
 
     elseif Type == 'ruins' and Zone == 'StartZonet1' then
-        table.insert(rewardItems, { id = TravelT1[math.random(#TravelT1)], min = 1, max = 1 } )
+        table.insert(rewardItems, ili( { id = TravelT1[math.random(#TravelT1)], min = 1, max = 1 }, { id = ArtT1[math.random(#ArtT1)], min = 1, max = 1 } ) )
+
+
     elseif Type == 'ruins' and Zone == 'StartZonet2' then
-        table.insert(rewardItems, { id = ElexirPermanent[math.random(#ElexirPermanent)], min = 1, max = 1 } )
+        table.insert(rewardItems, ili( { id = ElexirPermanent[math.random(#ElexirPermanent)], min = 1, max = 1 }, { id = Elexirt2[math.random(#Elexirt2)], min = 1, max = 1 } ) )
+
+
 
     elseif Type == 'ruins' and Zone == 'bufferZone' then
         table.insert(rewardItems, { id = BannerT1[math.random(#BannerT1)], min = 1, max = 1 } )
+
+
 
     elseif Type == 'riuns' and Zone == 'BigZonet3' then
         table.insert(rewardItems, { id = ArtT2[math.random(#ArtT2)], min = 1, max = 1 } )
     elseif Type == 'riuns' and Zone == 'BigZonet4' then
         table.insert(rewardItems, { id = BannerT3[math.random(#BannerT3)], min = 1, max = 1 } )
 
+
+
     elseif Type == 'riuns' and Zone == 'BigZonet4.1' then
         table.insert(rewardItems, { id = ArtT3[math.random(#ArtT3)], min = 1, max = 1 } )
     elseif Type == 'riuns' and Zone == 'BigZonet4.2' then
         table.insert(rewardItems, { id = JewelT3[math.random(#JewelT3)], min = 1, max = 1 } )
 
+
+
+        
     elseif Type == 'riuns' and Zone == 'VSZonet4' then
         table.insert(rewardItems, { id = JewelT4[math.random(#JewelT4)], min = 1, max = 1 } )
     elseif Type == 'riuns' and Zone == 'VSZonet5' then
@@ -886,26 +916,14 @@ function getReward(Type, Zone)
         table.insert(rewardItems, { id = ElexirPermanentT2[math.random(#ElexirPermanentT2)], min = 1, max = 1 } )
         table.insert(rewardItems, { id = strongOrbs[math.random(#strongOrbs)], min = 1, max = 1 } )
 
-    elseif Type == 'guard' and Zone == 'townt1' then
-        table.insert(rewardItems, { id = 'g000ig0005', min = 2, max = 2 } ) -- heal 50
-        table.insert(rewardItems, { id = ElexirProtection[math.random(#ElexirProtection)], min = 1, max = 1 } ) 
-        table.insert(rewardItems, { id = Talismant1[math.random(#Talismant1)], min = 1, max = 1 } )
+    
         --scroll--
-    elseif Type == 'guard' and Zone == 'townt2' then
-        table.insert(rewardItems, { id = 'g001ig0180', min = 2, max = 3 } ) -- heal 25
-        table.insert(rewardItems, { id = 'g001ig0378', min = 1, max = 1 } ) -- heal 75
-        table.insert(rewardItems, { id = 'g000ig0006', min = 1, max = 1 } ) -- heal 100
+    
         --scroll--
-    elseif Type == 'guard' and Zone == 'townt3' then
-        table.insert(rewardItems, { id = wand[math.random(#wand)], min = 1, max = 1 } ) --
-        table.insert(rewardItems, { id = weakOrbs[math.random(#weakOrbs)], min = 1, max = 1 } )
-        table.insert(rewardItems, { id = weakOrbs[math.random(#weakOrbs)], min = 1, max = 1 } )
-        table.insert(rewardItems, { id = mediumOrbs[math.random(#mediumOrbs)], min = 1, max = 1 } )
+   
 
 
-    elseif Type == 'guard' and Zone == 'townt4' then
-        table.insert(rewardItems, { id = weakOrbs[math.random(#weakOrbs)], min = 1, max = 1 } )
-        table.insert(rewardItems, { id = mediumOrbs[math.random(#mediumOrbs)], min = 1, max = 1 } )
+    
 
     elseif Type == 'guard' and Zone == 'townt4.1' then
 
@@ -914,41 +932,43 @@ function getReward(Type, Zone)
 
 
 
+    elseif Type == 'stackt1' and Zone == 'startZone' then
+        table.insert(rewardItems, { id = AuraPermanentProtect[math.random(#AuraPermanentProtect)], min = 1, max = 1 } )
+
+
     elseif Type == 'bags' and Zone == 'startZone' then 
         table.insert(rewardItems, { id = 'g001ig0180', min = 4, max = 6 } ) -- heal 25
         table.insert(rewardItems, { id = ElexirProtection[math.random(#ElexirProtection)], min = 1, max = 1 } )
+        table.insert(rewardItems, { id = Elexir[math.random(#Elexir)], min = 1, max = 1 } )
         table.insert(rewardItems, { id = 'g000ig0005', min = 4, max = 6 } ) -- heal 50
+        table.insert(rewardItems, { id = weakOrbs[math.random(#weakOrbs)], min = 1, max = 1 } )
         table.insert(rewardItems, { id = ElexirProtection[math.random(#ElexirProtection)], min = 1, max = 1 } )
         table.insert(rewardItems, { id = smallballmana[math.random(#smallballmana)], min = 1, max = 1 } )
         table.insert(rewardItems, { id = ElexirProtection[math.random(#ElexirProtection)], min = 1, max = 1 } )
         table.insert(rewardItems, { id = weakOrbs[math.random(#weakOrbs)], min = 1, max = 1 } )
-        table.insert(rewardItems, { id = weakOrbs[math.random(#weakOrbs)], min = 1, max = 1 } )
-        table.insert(rewardItems, { id = Elexir[math.random(#Elexir)], min = 1, max = 1 } )
         table.insert(rewardItems, { id = Elexir[math.random(#Elexir)], min = 1, max = 1 } )
 
 
         
     elseif Type == 'bags' and Zone == 'BigZone' then
         table.insert(rewardItems, { id = Elexir[math.random(#Elexir)], min = 1, max = 1 } )
-        table.insert(rewardItems, { id = Elexir[math.random(#Elexir)], min = 1, max = 1 } )
-        table.insert(rewardItems, { id = Elexirt2[math.random(#Elexirt2)], min = 1, max = 1 } )
         table.insert(rewardItems, { id = Elexirt2[math.random(#Elexirt2)], min = 1, max = 1 } )
         table.insert(rewardItems, { id = Elexirt2[math.random(#Elexirt2)], min = 1, max = 1 } )
         table.insert(rewardItems, { id = 'g000ig0001', min = 4, max = 4 } ) -- res
         table.insert(rewardItems, { id = 'g001ig0378', min = 3, max = 4 } ) -- хил 75
+        table.insert(rewardItems, { id = Elexirt2[math.random(#Elexirt2)], min = 1, max = 1 } )
         table.insert(rewardItems, { id = 'g000ig0006', min = 4, max = 5 } ) -- хил 100
         table.insert(rewardItems, { id = 'g000ig0018', min = 3, max = 4 } ) -- хил 200
+        table.insert(rewardItems, { id = Elexir[math.random(#Elexir)], min = 1, max = 1 } )
         table.insert(rewardItems, { id = mediumValuable[math.random(#mediumValuable)], min = 1, max = 1 } )
-        table.insert(rewardItems, { id = mediumValuable[math.random(#mediumValuable)], min = 1, max = 1 } )
+        table.insert(rewardItems, { id = ElexirProtection[math.random(#ElexirProtection)], min = 1, max = 1 } )
         table.insert(rewardItems, { id = mediumValuable[math.random(#mediumValuable)], min = 1, max = 1 } )
         table.insert(rewardItems, { id = bigballmana[math.random(#bigballmana)], min = 1, max = 1 } )
-        table.insert(rewardItems, { id = bigballmana[math.random(#bigballmana)], min = 1, max = 1 } )
-        table.insert(rewardItems, { id = mediumOrbs[math.random(#mediumOrbs)], min = 1, max = 1 } )
-        table.insert(rewardItems, { id = mediumOrbs[math.random(#mediumOrbs)], min = 1, max = 1 } )
         table.insert(rewardItems, { id = mediumOrbs[math.random(#mediumOrbs)], min = 1, max = 1 } )
         table.insert(rewardItems, { id = ElexirProtection[math.random(#ElexirProtection)], min = 1, max = 1 } )
+        table.insert(rewardItems, { id = mediumOrbs[math.random(#mediumOrbs)], min = 1, max = 1 } )
         table.insert(rewardItems, { id = ElexirProtection[math.random(#ElexirProtection)], min = 1, max = 1 } )
-        table.insert(rewardItems, { id = ElexirProtection[math.random(#ElexirProtection)], min = 1, max = 1 } )
+        table.insert(rewardItems, { id = mediumOrbs[math.random(#mediumOrbs)], min = 1, max = 1 } )
         table.insert(rewardItems, { id = ElexirProtection[math.random(#ElexirProtection)], min = 1, max = 1 } )
 
 
@@ -1154,11 +1174,11 @@ function getMercenaries(getGuard, getReward)
     if math.random(0,1) == 1 then unitsMercenaries[i] = { id = 'g001uu8267', level = 3, unique = true } i = i + 1 end -- эльф-призрак
     if math.random(0,1) == 1 then unitsMercenaries[i] = { id = 'g000uu0166', level = 4, unique = true } i = i + 1 end -- возвышенный
     if math.random(0,1) == 1 then unitsMercenaries[i] = { id = 'g000uu7583', level = 2, unique = true } i = i + 1 end -- йамму
-    if math.random(0,1) == 1 then unitsMercenaries[i] = { id = '', level = 1, unique = true } i = i + 1 end --
-    if math.random(0,1) == 1 then unitsMercenaries[i] = { id = '', level = 1, unique = true } i = i + 1 end --
-    if math.random(0,1) == 1 then unitsMercenaries[i] = { id = '', level = 1, unique = true } i = i + 1 end --
-    if math.random(0,1) == 1 then unitsMercenaries[i] = { id = '', level = 1, unique = true } i = i + 1 end -- 
-    if math.random(0,1) == 1 then unitsMercenaries[i] = { id = '', level = 1, unique = true } i = i + 1 end --
+    -- if math.random(0,1) == 1 then unitsMercenaries[i] = { id = '', level = 1, unique = true } i = i + 1 end --
+    -- if math.random(0,1) == 1 then unitsMercenaries[i] = { id = '', level = 1, unique = true } i = i + 1 end --
+    -- if math.random(0,1) == 1 then unitsMercenaries[i] = { id = '', level = 1, unique = true } i = i + 1 end --
+    -- if math.random(0,1) == 1 then unitsMercenaries[i] = { id = '', level = 1, unique = true } i = i + 1 end -- 
+    -- if math.random(0,1) == 1 then unitsMercenaries[i] = { id = '', level = 1, unique = true } i = i + 1 end --
 
 
     return {
@@ -1584,6 +1604,85 @@ function getBufferZone2(zoneId, playerRace, zoneSize)
 	}
 end
 
+--------------------------------------------------
+  -- Описывает буферную зону игрока 3
+--------------------------------------------------
+
+-- function getBufferZone3(zoneId, playerRace, zoneSize)
+-- 	return {
+-- 		id = zoneId,
+-- 		type = Zone.Junction,
+-- 		size = zoneSize,
+--         mines = getMinesBufferZone(playerRace),
+--         stacks = {
+--             getStack( 3, 10, {} )
+--         },
+
+--         -- Торговец 
+--         merchants = {
+--             {   goods = {
+--                     itemTypes = { Item.Orb, Item.Talisman, Item.PotionBoost, Item.PotionHeal, Item.PotionRevive },
+--                     value = { min = 8000, max = 9500 }
+--                 }
+--             },
+--                 guard = getGuard( 3 )
+--         },
+
+--          -- Башня мага 
+--         mages = {
+--             { spellLevel = { min = 2, max = 4 },
+--                value = { min = 5000, max = 6000 }
+--             },
+--             guard = getGuard( 3 )
+--         },
+
+--         ruins = {
+--             getRuins ( { min = 320, max = 380}, getGuard(3), getReward('ruins', 'bufferZone') ),
+--         },
+
+--         bags = getBags( 3, {} )
+-- 	}
+-- end
+
+--------------------------------------------------
+  -- Описывает буферную зону игрока 2
+--------------------------------------------------
+
+-- function getBufferZone4(zoneId, playerRace, zoneSize)
+-- 	return {
+-- 		id = zoneId,
+-- 		type = Zone.Junction,
+-- 		size = zoneSize,
+--         mines = getMinesBufferZone(playerRace),
+--         stacks = {
+--             getStack( 3, 10, {} )
+--         },
+
+--         -- Торговец 
+--         merchants = {
+--             {   goods = {
+--                     itemTypes = { Item.Orb, Item.Talisman, Item.PotionBoost, Item.PotionHeal, Item.PotionRevive },
+--                     value = { min = 8000, max = 9500 }
+--                 }
+--             },
+--                 guard = getGuard( 3 )
+--         },
+
+--          -- Башня мага 
+--         mages = {
+--             { spellLevel = { min = 2, max = 4 },
+--                value = { min = 5000, max = 6000 }
+--             },
+--             guard = getGuard( 3 )
+--         },
+
+--         ruins = {
+--             getRuins ( { min = 320, max = 380}, getGuard(3), getReward('ruins', 'bufferZone') ),
+--         },
+
+--         bags = getBags( 3, {} )
+-- 	}
+-- end
 
 
 -----------------------------
@@ -1644,6 +1743,8 @@ local startZone2Id = 3
 -- Номера буферных зон
 local bufferZone1Id = 7
 local bufferZone2Id = 8
+-- local bufferZone3Id = 9
+-- local bufferZone4Id = 10
 -- Номер центральной зоны
 local VSZoneId = 6
 
@@ -1713,14 +1814,14 @@ end
 
 
 template = {
-	name = 'VerSus',
-	description = 'VerSus 0.1 by iSkromny, sMNS 2.0, 72x72, 2 players, two zones to players, 1 zone in the center',
+	name = 'VerSus 0.5.1',
+	description = 'VerSus 0.5.1 by iSkromny, sMNS 2.08b, 72x72, 2 players, two zones to players, 1 zone in the center',
     minSize = 72,
 	maxSize = 72,
 	maxPlayers = 2,
 	roads = 45,
 	forest = 40,
 	startingGold = 1000,
-	
+    startingNativeMana = 200,	
 	getContents = getTemplateContents
 }
