@@ -64,6 +64,7 @@ function getStartMines(race)
     return zoneMines
 end
 
+
 -----------------------------
     -- ресурсы в большой зоне
 -----------------------------
@@ -318,7 +319,6 @@ local ElexirPermanent = { -- 6050value 200-550
     local ElexirPermanentT2 = { -- 6700value 600-1200
     'g001ig0561', -- +25% udar na sebya         600
     'g001ig0523', -- +10%exp                    600 
-    
     'g000ig0004', -- +10arm                     600
     'g001ig0130', -- 22%regen                   700
     'g001ig0548', -- +10%krit                   700
@@ -352,12 +352,10 @@ local AuraPermanent = {
     'g001ig0021', -- aura +5%dmg -10%hp         800
     'g001ig0023', -- aura +5%ini -10%hp         800
     'g001ig0022', -- aura +5acc -10%hp          550
-
     'g001ig0025', -- aura +5%hp all -10%hp      850
     'g001ig0019', -- aura vampirizm +10%        900
     'g001ig0032', -- aura +5%hp                 1000
-    --'g001ig0016', -- aura ward weapon -25%hp    1800  -- magazin
-    --'g001ig0565', -- aura +5% krit              1800  -- magazin
+    
 }
 
 local Permanentskill = {
@@ -369,7 +367,8 @@ local Permanentskill = {
     'g001ig0529', -- znanie sfer                600
     'g001ig0526', -- znamenosec                 600
     'g001ig0501', -- hod po lesu                600
-    -- 'g001ig0522', -- nepodkupnost               1500 -- magazin
+    'g001ig0528', -- pohod snaryajenie          600
+    
 }
 
 local ProtectPermanent = {
@@ -393,7 +392,7 @@ local ProtectPermanent = {
     'g001ig0340', -- ward ot prevrascheniya     700
     'g001ig0336', -- ward ot okamen             700
     'g001ig0324', -- ward weapon                800
-    -- 'g001ig0356', -- ward uron                  1000  -- magazin
+    
 
 }
 
@@ -705,8 +704,7 @@ local BannerT3 = {
     'g000ig1015', -- 20arm                                                            1500
     'g001ig0290', -- +10arm +25%hp                                                    1500
     'g001ig0291' -- +10arm +10%hp                                                     1500
-    -- 'g001ig0375', -- immun k imitacii +2lvl prizvannym ili prevrativshimsya           1000      в магаз/убрать???
-    -- 'g001ig0500', -- immun ataka-proklyatie +20%acc atak-prokl +5%regen baf and prokl 1100      в магаз/убрать???
+   
 }
 
 local BannerT4 = { 
@@ -715,7 +713,6 @@ local BannerT4 = {
     'g001ig0052', -- +50hp                             1500
     'g001ig0366', -- taumaturgiya protection +25%vamp  1700
     'g001ig0360' -- +15%vamp +10%dmg                   1300
-    -- 'g001ig0368', -- uron protection                   2000  в магаз/убрать???
     
 }
 
@@ -933,14 +930,71 @@ function getReward(Type, Zone)
 
 
     elseif Type == 'stackt1' and Zone == 'startZone' then
-        table.insert(rewardItems, { id = AuraPermanentProtect[math.random(#AuraPermanentProtect)], min = 1, max = 1 } )
+        table.insert(rewardItems, { id = AuraPermanentProtect[math.random(#AuraPermanentProtect)], min = 10, max = 10 } )
+
+
+
+
+    elseif Type == 'merchants' and Zone == 'BigZone' then
+        table.insert(rewardItems, ili( { id = 'g001ig0375', min = 1, max = 1 }, { id = 'g001ig0500', min = 1, max = 1 } ) ) -- znamya naslediya ili znamya padshego hranitelya
+        table.insert(rewardItems, ili( { id = 'g001ig0368', min = 1, max = 1 }, { id = 'g001ig0356', min = 1, max = 1 } ) ) -- znamya ot obichnogo urona ili zelie ot obichnogo urona
+        table.insert(rewardItems, { id = 'g000ig0001', min = 4, max = 4 } ) -- res
+        table.insert(rewardItems, { id = 'g000ig0005', min = 4, max = 4 } ) -- heal 50
+        table.insert(rewardItems, { id = 'g001ig0378', min = 4, max = 4 } ) -- хил 75
+        table.insert(rewardItems, { id = 'g000ig0006', min = 3, max = 4 } ) -- хил 100
+        table.insert(rewardItems, { id = 'g000ig0018', min = 3, max = 4 } ) -- хил 200
+        table.insert(rewardItems, { id = 'g001ig0016', min = 1, max = 1 } ) -- aura ward weapon -25%hp
+        table.insert(rewardItems, { id = 'g001ig0565', min = 1, max = 1 } ) -- aura +5% krit vsem
+        table.insert(rewardItems, { id = 'g001ig0522', min = 1, max = 1 } ) -- nepodkupnost
+        table.insert(rewardItems, { id = Permanentskill[math.random(#Permanentskill)], min = 1, max = 1 } )
+        table.insert(rewardItems, { id = ArtT3[math.random(#ArtT3)], min = 1, max = 2 } )
+        table.insert(rewardItems, { id = ArtT2[math.random(#ArtT2)], min = 1, max = 2 } )
+        table.insert(rewardItems, { id = ArtT1[math.random(#ArtT1)], min = 1, max = 2 } )
+        table.insert(rewardItems, { id = BannerT3[math.random(#BannerT3)], min = 1, max = 2 } )
+        table.insert(rewardItems, { id = BannerT2[math.random(#BannerT2)], min = 1, max = 2 } )
+        table.insert(rewardItems, { id = BannerT1[math.random(#BannerT1)], min = 1, max = 2 } )
+        table.insert(rewardItems, { id = TravelT3[math.random(#TravelT3)], min = 1, max = 2 } )
+        table.insert(rewardItems, { id = TravelT2[math.random(#TravelT2)], min = 1, max = 2 } )
+        table.insert(rewardItems, { id = JewelT3[math.random(#JewelT3)], min = 1, max = 2 } )
+        table.insert(rewardItems, { id = JewelT2[math.random(#JewelT2)], min = 1, max = 2 } )
+        table.insert(rewardItems, { id = JewelT1[math.random(#JewelT1)], min = 1, max = 2 } )
+        table.insert(rewardItems, { id = AuraPermanentProtect[math.random(#AuraPermanentProtect)], min = 1, max = 2 } )
+        table.insert(rewardItems, { id = AuraPermanent[math.random(#AuraPermanent)], min = 1, max = 2 } )
+        table.insert(rewardItems, { id = ProtectPermanent[math.random(#ProtectPermanent)], min = 1, max = 2 } )
+        table.insert(rewardItems, { id = AuraPermanentProtect[math.random(#AuraPermanentProtect)], min = 1, max = 2 } )
+        table.insert(rewardItems, { id = AuraPermanent[math.random(#AuraPermanent)], min = 1, max = 2 } )
+        table.insert(rewardItems, { id = ProtectPermanent[math.random(#ProtectPermanent)], min = 1, max = 2 } )
+        table.insert(rewardItems, { id = AuraPermanentProtect[math.random(#AuraPermanentProtect)], min = 1, max = 2 } )
+        table.insert(rewardItems, { id = AuraPermanent[math.random(#AuraPermanent)], min = 1, max = 2 } )
+        table.insert(rewardItems, { id = ProtectPermanent[math.random(#ProtectPermanent)], min = 1, max = 2 } )
+        table.insert(rewardItems, { id = ElexirProtection[math.random(#ElexirProtection)], min = 1, max = 2 } )
+        table.insert(rewardItems, { id = Elexir[math.random(#Elexir)], min = 1, max = 2 } )
+        table.insert(rewardItems, { id = ElexirProtection[math.random(#ElexirProtection)], min = 1, max = 2 } )
+        table.insert(rewardItems, { id = Elexir[math.random(#Elexir)], min = 1, max = 2 } )
+        table.insert(rewardItems, { id = ElexirProtection[math.random(#ElexirProtection)], min = 1, max = 2 } )
+        table.insert(rewardItems, { id = Elexir[math.random(#Elexir)], min = 1, max = 2 } )
+        table.insert(rewardItems, { id = ElexirProtection[math.random(#ElexirProtection)], min = 1, max = 2 } )
+        table.insert(rewardItems, { id = Elexir[math.random(#Elexir)], min = 1, max = 2 } )
+        table.insert(rewardItems, { id = ElexirPermanent[math.random(#ElexirPermanent)], min = 1, max = 2 } )
+        table.insert(rewardItems, { id = Elexirt2[math.random(#Elexirt2)], min = 1, max = 2 } )
+        table.insert(rewardItems, { id = ElexirPermanent[math.random(#ElexirPermanent)], min = 1, max = 2 } )
+        table.insert(rewardItems, { id = Elexirt2[math.random(#Elexirt2)], min = 1, max = 2 } )
+        table.insert(rewardItems, { id = ElexirPermanent[math.random(#ElexirPermanent)], min = 1, max = 2 } )
+        table.insert(rewardItems, { id = Elexirt2[math.random(#Elexirt2)], min = 1, max = 2 } )
+        table.insert(rewardItems, { id = ElexirPermanent[math.random(#ElexirPermanent)], min = 1, max = 2 } )
+        table.insert(rewardItems, { id = Elexirt2[math.random(#Elexirt2)], min = 1, max = 2 } )
+        table.insert(rewardItems, { id = Permanentskill[math.random(#Permanentskill)], min = 1, max = 1 } )
+        
 
 
     elseif Type == 'bags' and Zone == 'startZone' then 
         table.insert(rewardItems, { id = 'g001ig0180', min = 4, max = 6 } ) -- heal 25
         table.insert(rewardItems, { id = ElexirProtection[math.random(#ElexirProtection)], min = 1, max = 1 } )
         table.insert(rewardItems, { id = Elexir[math.random(#Elexir)], min = 1, max = 1 } )
-        table.insert(rewardItems, { id = 'g000ig0005', min = 4, max = 6 } ) -- heal 50
+        table.insert(rewardItems, { id = 'g000ig0005', min = 1, max = 2 } ) -- heal 50
+        table.insert(rewardItems, { id = 'g000ig0005', min = 1, max = 1 } ) -- heal 50
+        table.insert(rewardItems, { id = 'g000ig0005', min = 1, max = 2 } ) -- heal 50
+        table.insert(rewardItems, { id = 'g000ig0005', min = 1, max = 1 } ) -- heal 50
         table.insert(rewardItems, { id = weakOrbs[math.random(#weakOrbs)], min = 1, max = 1 } )
         table.insert(rewardItems, { id = ElexirProtection[math.random(#ElexirProtection)], min = 1, max = 1 } )
         table.insert(rewardItems, { id = smallballmana[math.random(#smallballmana)], min = 1, max = 1 } )
@@ -954,11 +1008,22 @@ function getReward(Type, Zone)
         table.insert(rewardItems, { id = Elexir[math.random(#Elexir)], min = 1, max = 1 } )
         table.insert(rewardItems, { id = Elexirt2[math.random(#Elexirt2)], min = 1, max = 1 } )
         table.insert(rewardItems, { id = Elexirt2[math.random(#Elexirt2)], min = 1, max = 1 } )
-        table.insert(rewardItems, { id = 'g000ig0001', min = 4, max = 4 } ) -- res
-        table.insert(rewardItems, { id = 'g001ig0378', min = 3, max = 4 } ) -- хил 75
+        table.insert(rewardItems, { id = 'g000ig0001', min = 1, max = 1 } ) -- res
+        table.insert(rewardItems, { id = 'g000ig0001', min = 1, max = 1 } ) -- res
+        table.insert(rewardItems, { id = 'g000ig0001', min = 1, max = 1 } ) -- res
+        table.insert(rewardItems, { id = 'g000ig0001', min = 1, max = 1 } ) -- res
+        table.insert(rewardItems, { id = 'g001ig0378', min = 1, max = 1 } ) -- хил 75
+        table.insert(rewardItems, { id = 'g001ig0378', min = 1, max = 1 } ) -- хил 75
+        table.insert(rewardItems, { id = 'g001ig0378', min = 1, max = 2 } ) -- хил 75
         table.insert(rewardItems, { id = Elexirt2[math.random(#Elexirt2)], min = 1, max = 1 } )
-        table.insert(rewardItems, { id = 'g000ig0006', min = 4, max = 5 } ) -- хил 100
-        table.insert(rewardItems, { id = 'g000ig0018', min = 3, max = 4 } ) -- хил 200
+        table.insert(rewardItems, { id = 'g000ig0006', min = 1, max = 1 } ) -- хил 100
+        table.insert(rewardItems, { id = 'g000ig0006', min = 1, max = 1 } ) -- хил 100
+        table.insert(rewardItems, { id = 'g000ig0006', min = 1, max = 2 } ) -- хил 100
+        table.insert(rewardItems, { id = 'g000ig0006', min = 1, max = 1 } ) -- хил 100
+        table.insert(rewardItems, { id = 'g000ig0018', min = 1, max = 1 } ) -- хил 200
+        table.insert(rewardItems, { id = 'g000ig0018', min = 1, max = 1 } ) -- хил 200
+        table.insert(rewardItems, { id = 'g000ig0018', min = 1, max = 1 } ) -- хил 200
+        table.insert(rewardItems, { id = 'g000ig0018', min = 1, max = 2 } ) -- хил 200
         table.insert(rewardItems, { id = Elexir[math.random(#Elexir)], min = 1, max = 1 } )
         table.insert(rewardItems, { id = mediumValuable[math.random(#mediumValuable)], min = 1, max = 1 } )
         table.insert(rewardItems, { id = ElexirProtection[math.random(#ElexirProtection)], min = 1, max = 1 } )
@@ -1024,7 +1089,7 @@ function getStack(tier, stackCount, itemsTable)
 end
 
 ------------------------------------------------
-    -- Отхрана объектов (города, руины, проходы)
+    -- Отхрана объектов (города, проходы)
 ------------------------------------------------
 function getGuard(tier, itemsTable)
 
@@ -1129,6 +1194,50 @@ function getRuins(ruinsGold, getGuard, ruinsItem)
     }
 end
 
+------------------------------------------------
+    -- Отхрана руин
+------------------------------------------------
+function getGuardRuins(tier)
+
+    local squad = { }
+    if (tier == 1) then squadStack = Squad1
+    elseif (tier == 2 or tier == 3) then squadStack = Squad2
+    elseif (tier == 4) then squadStack = Squad3
+    elseif (tier == 5) then squadStack = Squad4
+    elseif (tier == 6) then squad = SquadGO
+    end
+
+    local expValueGuard = { }
+    if (tier == 1) then
+        expValueGuard.min = 180 * kf
+        expValueGuard.max = 240 * kf
+    elseif (tier == 2) then
+        expValueGuard.min = 240 * kf
+        expValueGuard.max = 300 * kf
+    elseif (tier == 3) then
+        expValueGuard.min = 360 * kf
+        expValueGuard.max = 490 * kf
+    elseif (tier == 4) then
+        expValueGuard.min = 550 * kf
+        expValueGuard.max = 780 * kf
+    elseif (tier == 5) then
+        expValueGuard.min = 800 * kf
+        expValueGuard.max = 1090 * kf
+    elseif (tier == 6) then
+        expValueGuard.min = 1100 * kf
+        expValueGuard.max = 1750 * kf
+    end
+
+    return {
+        subraceTypes = squad,
+        value = expValueGuard,
+        -- loot = {
+        --     items = itemsTable
+        -- }
+    }
+end
+
+
 ----------------
     -- Сундуки
 ----------------
@@ -1209,7 +1318,7 @@ function getStartZone(zoneId, playerRace, zoneSize)
 
     }
     if playerRace == Race.Human then
-        table.insert(StartItem, {id = 'g001ig0277', min = 1, max = 1}) -- шар маны жизни 200
+        table.insert(StartItem, {id = 'g001ig0146', min = 1, max = 1}) -- шар маны жизни 100
         table.insert(StartItem, {id = ScrollCapital[math.random(#ScrollCapital)], min = 1, max = 1}) -- свиток энт малый или скелет
         table.insert(StartItem, {id = weakOrbs[math.random(#weakOrbs)], min = 1, max = 1})
         table.insert(StartItem, {id = ElexirProtection[math.random(#ElexirProtection)], min = 1, max = 1})
@@ -1218,7 +1327,7 @@ function getStartZone(zoneId, playerRace, zoneSize)
         table.insert(StartItem, {id = weakOrbs[math.random(#weakOrbs)], min = 1, max = 1})
         table.insert(StartItem, {id = Talismant1[math.random(#Talismant1)], min = 1, max = 1})
     elseif playerRace == Race.Elf then
-        table.insert(StartItem, {id = 'g001ig0281', min = 1, max = 1}) -- шар маны лесного элексира 200
+        table.insert(StartItem, {id = 'g001ig0150', min = 1, max = 1}) -- шар маны лесного элексира 100
         table.insert(StartItem, {id = weakOrbs[math.random(#weakOrbs)], min = 1, max = 1})
         table.insert(StartItem, {id = ElexirProtection[math.random(#ElexirProtection)], min = 1, max = 1})
         table.insert(StartItem, {id = smallValuable[math.random(#smallValuable)], min = 1, max = 1})
@@ -1226,7 +1335,7 @@ function getStartZone(zoneId, playerRace, zoneSize)
         table.insert(StartItem, {id = weakOrbs[math.random(#weakOrbs)], min = 1, max = 1})
         table.insert(StartItem, {id = Talismant1[math.random(#Talismant1)], min = 1, max = 1})
     elseif playerRace == Race.Heretic then
-        table.insert(StartItem, {id = 'g001ig0278', min = 1, max = 1}) -- шар маны преисподней 200
+        table.insert(StartItem, {id = 'g001ig0147', min = 1, max = 1}) -- шар маны преисподней 100
         table.insert(StartItem, {id = weakOrbs[math.random(#weakOrbs)], min = 1, max = 1})        
         table.insert(StartItem, {id = ElexirProtection[math.random(#ElexirProtection)], min = 1, max = 1})
         table.insert(StartItem, {id = smallValuable[math.random(#smallValuable)], min = 1, max = 1})
@@ -1234,7 +1343,7 @@ function getStartZone(zoneId, playerRace, zoneSize)
         table.insert(StartItem, {id = weakOrbs[math.random(#weakOrbs)], min = 1, max = 1})
         table.insert(StartItem, {id = Talismant1[math.random(#Talismant1)], min = 1, max = 1})
     elseif playerRace == Race.Dwarf then
-        table.insert(StartItem, {id = 'g001ig0279', min = 1, max = 1}) -- шар маны рун 200
+        table.insert(StartItem, {id = 'g001ig0148', min = 1, max = 1}) -- шар маны рун 100
         table.insert(StartItem, {id = weakOrbs[math.random(#weakOrbs)], min = 1, max = 1})
         table.insert(StartItem, {id = ElexirProtection[math.random(#ElexirProtection)], min = 1, max = 1})
         table.insert(StartItem, {id = smallValuable[math.random(#smallValuable)], min = 1, max = 1})
@@ -1242,7 +1351,7 @@ function getStartZone(zoneId, playerRace, zoneSize)
         table.insert(StartItem, {id = weakOrbs[math.random(#weakOrbs)], min = 1, max = 1})
         table.insert(StartItem, {id = Talismant1[math.random(#Talismant1)], min = 1, max = 1})
     elseif playerRace == Race.Undead then
-        table.insert(StartItem, {id = 'g001ig0280', min = 1, max = 1}) -- шар маны смерти 200
+        table.insert(StartItem, {id = 'g001ig0149', min = 1, max = 1}) -- шар маны смерти 100
         table.insert(StartItem, {id = weakOrbs[math.random(#weakOrbs)], min = 1, max = 1})
         table.insert(StartItem, {id = ElexirProtection[math.random(#ElexirProtection)], min = 1, max = 1})
         table.insert(StartItem, {id = smallValuable[math.random(#smallValuable)], min = 1, max = 1})
@@ -1272,15 +1381,15 @@ function getStartZone(zoneId, playerRace, zoneSize)
 
         -- отряды на респе        
         stacks = {
-            getStack( 1, 7, {} ),
-            getStack( 2, 8, {} ),
+            getStack( 1, 7, getReward('stackt1', 'startZone') ),
+            getStack( 2, 8, getReward('stackt1', 'startZone') ),
             -- getStack(3, 5, {}),
             },
         
         -- Руины в стартовой зоне
         ruins = {
-            getRuins( { min = 210, max = 249 }, getGuard(1), getReward('ruins', 'StartZonet1') ),
-            getRuins( { min = 239, max = 280 }, getGuard(2), getReward('ruins', 'StartZonet2') )
+            getRuins( { min = 210, max = 249 }, getGuardRuins(1), getReward('ruins', 'StartZonet1') ),
+            getRuins( { min = 239, max = 280 }, getGuardRuins(2), getReward('ruins', 'StartZonet2') )
             },
 
         -- Города в стартовой зоне
@@ -1313,8 +1422,8 @@ function getBigZone1(zoneId, playerRace, zoneSize) --
 
         -- Руины
         ruins = {
-            getRuins( { min = 420, max = 530 }, getGuard(4), getReward('ruins', 'BigZonet4.1') ),
-            getRuins( { min = 420, max = 530 }, getGuard(4), getReward('ruins', 'BigZonet4.2') )
+            getRuins( { min = 420, max = 530 }, getGuardRuins(4), getReward('ruins', 'BigZonet4.1') ),
+            getRuins( { min = 420, max = 530 }, getGuardRuins(4), getReward('ruins', 'BigZonet4.2') )
         },
 
         -- Лагерь наёмников
@@ -1324,10 +1433,11 @@ function getBigZone1(zoneId, playerRace, zoneSize) --
 
         -- Лавка торговца 
         merchants = {
-            {   goods = {
-                    itemTypes = { Item.Orb, Item.Talisman, Item.PotionBoost, Item.PotionHeal, Item.PotionRevive },
-                    value = { min = 8000, max = 9500 }
-                }
+            {   
+                goods = {
+                    items = getReward('merchants', 'BigZone'),
+                },
+                guard = getGuard(3)
             }
         },
 
@@ -1337,7 +1447,7 @@ function getBigZone1(zoneId, playerRace, zoneSize) --
                value = { min = 5000, max = 6000 }
             }
         },
-
+        -- сундуки
         bags = getBags( 7, getReward('bags', 'BigZone') ),
 
         -- Города
@@ -1367,8 +1477,8 @@ function getBigZone2(zoneId, playerRace, zoneSize)
 
         -- Руины
         ruins = {
-            getRuins( { min = 320, max = 380 }, getGuard(3), getReward('ruins', 'BigZonet3') ),
-            getRuins( { min = 420, max = 530 }, getGuard(4), getReward('ruins', 'BigZonet4') )
+            getRuins( { min = 320, max = 380 }, getGuardRuins(3), getReward('ruins', 'BigZonet3') ),
+            getRuins( { min = 420, max = 530 }, getGuardRuins(4), getReward('ruins', 'BigZonet4') )
         },
 
         -- Лавка торговца
@@ -1381,11 +1491,11 @@ function getBigZone2(zoneId, playerRace, zoneSize)
         },
 
         -- Тренер
-        trainers = {
-            {
-            guard = getGuard(3)
-            }
-        },
+        -- trainers = {
+        --     {
+        --     guard = getGuard(3)
+        --     }
+        -- },
 
         -- Башня мага 
         mages = {
@@ -1423,8 +1533,8 @@ function getBigZone4(zoneId, playerRace, zoneSize)
 
         -- Руины
         ruins = {
-            getRuins( { min = 420, max = 530 }, getGuard(4), getReward('ruins', 'BigZonet4.1') ),
-            getRuins( { min = 420, max = 530 }, getGuard(4), getReward('ruins', 'BigZonet4.2') )
+            getRuins( { min = 420, max = 530 }, getGuardRuins(4), getReward('ruins', 'BigZonet4.1') ),
+            getRuins( { min = 420, max = 530 }, getGuardRuins(4), getReward('ruins', 'BigZonet4.2') )
         },
 
         -- Лагерь наёмников
@@ -1485,8 +1595,8 @@ function getBigZone5(zoneId, playerRace, zoneSize) -- серая
 
         -- Руины
         ruins = {
-            getRuins( { min = 320, max = 380 }, getGuard(3), getReward('ruins', 'BigZonet3') ),
-            getRuins( { min = 420, max = 530 }, getGuard(4), getReward('ruins', 'BigZonet4') )
+            getRuins( { min = 320, max = 380 }, getGuardRuins(3), getReward('ruins', 'BigZonet3') ),
+            getRuins( { min = 420, max = 530 }, getGuardRuins(4), getReward('ruins', 'BigZonet4') )
         },
 
         -- Лавка торговца
@@ -1499,12 +1609,11 @@ function getBigZone5(zoneId, playerRace, zoneSize) -- серая
         },
 
         -- Тренер
-        trainers = {
-            {
-            guard = getGuard(3)
-            }
-
-        },
+        -- trainers = {
+        --     {
+        --     guard = getGuard(3)
+        --     }
+        -- },
 
         -- Башня мага 
         mages = {
@@ -1555,7 +1664,7 @@ function getBufferZone1(zoneId, playerRace, zoneSize)
         },
 
         ruins = {
-            getRuins ( { min = 320, max = 380}, getGuard(3), getReward('ruins', 'bufferZone') ),
+            getRuins ( { min = 320, max = 380}, getGuardRuins(3), getReward('ruins', 'bufferZone') ),
         },
 
         bags = getBags( 3, {} )
@@ -1597,7 +1706,7 @@ function getBufferZone2(zoneId, playerRace, zoneSize)
 
         -- Руины
         ruins = {
-            getRuins({ min = 320, max = 380}, getGuard(3), getReward('ruins', 'bufferZone') ),
+            getRuins({ min = 320, max = 380}, getGuardRuins(3), getReward('ruins', 'bufferZone') ),
         },
 
         bags = getBags( 3, {} )
@@ -1782,19 +1891,16 @@ function getConnections()
         { from = 7, to = 5, guard = getGuard( 3, getReward('guard', 'BigZone25') ) },
         -- Проходы между 1 большой зоной и центром
 		{ from = 1, to = 6, guard = getGuard( 6, getReward('guard', 'GO') ) },
-        -- { from = 1, to = 6, guard = getGuard( 6, {} ) },
         -- Проходы между 2 большой зоной и центром
 		{ from = 2, to = 6, guard = getGuard( 6, getReward('guard', 'GO') ) },
-        -- { from = 2, to = 6, guard = getGuard( 6, {} ) },
+    
         -- Проходы между большими соседними зонами
-        -- { from = 1, to = 2 },
-        -- { from = 5, to = 4 },
+        { from = 1, to = 2 },
+        { from = 5, to = 4 },
 
         -- Проходы между 3 большой зоной и центром
-        -- { from = 5, to = 6, guard = getGuard( 6, {} ) },
         { from = 5, to = 6, guard = getGuard (6, getReward('guard', 'GO') ) },
         -- Проходы между 4 большой зоной и центром
-        -- { from = 4, to = 6, guard = getGuard( 6, {} ) },
         { from = 4, to = 6, guard = getGuard( 6, getReward('guard', 'GO') ) },
          -- Выход из буфера в большую зону
         { from = 8, to = 2, guard = getReward( 3, getReward('guard', 'BigZone25') ) },
