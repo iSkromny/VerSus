@@ -318,8 +318,9 @@ local ElexirdotProtection = {'g001ig0331', 'g001ig0345', 'g001ig0341', 'g001ig03
 local ElexirProtection = {'g000ig0022', 'g000ig0021', 'g000ig0023', 'g000ig0024', 'g001ig0125', 'g001ig0036'}
 local Elexir = {'g000ig0014','g000ig0008', 'g000ig0011', 'g000ig0002'}
 local Elexirt2 = {'g000ig0009', 'g001ig0490', 'g000ig0012', 'g000ig0015', 'g001ig0491', 'g001ig0127', 'g001ig0562', 'g000ig0003', 'g001ig0355', 'g000ig0017'}
-local ElexirPermanent = {'g001ig0532', 'g001ig0313', 'g001ig0311', 'g001ig0307', 'g001ig0315', 'g001ig0533', 'g001ig0309', 'g001ig0317', 'g001ig0519', 'g000ig0010', 'g001ig0516', 'g001ig0316', 'g000ig0007', 'g000ig0013', 'g000ig0016'}
-local ElexirPermanentT2 = {'g001ig0561', 'g001ig0523', 'g000ig0004', 'g001ig0130', 'g001ig0548', 'g001ig0018', 'g001ig0376', 'g001ig0518', 'g001ig0521', 'g001ig0308', 'g001ig0314', 'g001ig0310', 'g001ig0312'}
+local ElexirPermanent = {'g001ig0532', 'g001ig0313', 'g001ig0311', 'g001ig0307', 'g001ig0315', 'g001ig0533', 'g001ig0309'}
+local ElexirPermanentT2 = {'g001ig0317', 'g001ig0519', 'g000ig0010', 'g001ig0516', 'g001ig0316', 'g000ig0007', 'g000ig0013', 'g000ig0016', 'g000ig0004', 'g001ig0548'}
+local ElexirPermanentT3 = {'g001ig0561', 'g001ig0523', 'g001ig0130', 'g001ig0018', 'g001ig0376', 'g001ig0518', 'g001ig0521', 'g001ig0308', 'g001ig0314', 'g001ig0310', 'g001ig0312'}
 local AuraPermanent = {'g001ig0026', 'g001ig0027', 'g001ig0563', 'g001ig0028', 'g001ig0034', 'g001ig0031', 'g001ig0029', 'g001ig0030', 'g001ig0033', 'g001ig0564', 'g001ig0017', 'g001ig0024', 'g001ig0021', 'g001ig0023',  'g001ig0022',
     'g001ig0025', 'g001ig0019', 'g001ig0032'}
 local Permanentskill = {'g001ig0530', 'g001ig0527', 'g001ig0531', 'g001ig0525', 'g001ig0524', 'g001ig0529', 'g001ig0526', 'g001ig0501', 'g001ig0528'}
@@ -339,9 +340,10 @@ local scrollT2 = {'g001ig0165', 'g001ig0580', 'g001ig0577', 'g001ig0576', 'g001i
 local scrollT3 = {'g000ig5114', 'g000ig5035', 'g000ig5055', 'g000ig5076', 'g000ig5115', 'g000ig5017', 'g000ig5036', 'g000ig5082', 'g000ig5116',
     'g000ig5075', 'g000ig5113', 'g000ig5091', 'g001ig0586', 'g000ig5039', 'g000ig5057'}
 
-local scrollDmgT1 = {'g000ig5024', 'g000ig5043', 'g000ig5097', 'g000ig5004', 'g000ig5062', 'g000ig5063', 'g000ig5048', 'g000ig5070', 'g000ig5028', 'g000ig5067', 'g000ig5104'}
-local scrollDmgT2 = {'g000ig5054', 'g000ig5109', 'g000ig5033', 'g000ig5014', 'g000ig5072'}
-local scrollDmgT3 = {'g000ig5093', 'g000ig5090', 'g000ig5081', 'g000ig5086', 'g000ig5112'}
+local scrollDmgT1 = {'g000ig5024', 'g000ig5043', 'g000ig5097', 'g000ig5004', 'g000ig5062', 'g000ig5063'}
+local scrollDmgT2 = {'g000ig5048', 'g000ig5028', 'g000ig5067', 'g000ig5104'}
+local scrollDmgT3 = {'g000ig5054', 'g000ig5109', 'g000ig5033', 'g000ig5014', 'g000ig5072'}
+local scrollDmgT4 = {'g000ig5093', 'g000ig5090', 'g000ig5081', 'g000ig5086', 'g000ig5112'}
 
 local weakOrbs = {'g000ig9019', 'g001ig0189', 'g000ig9017', 'g000ig9033', 'g001ig0299', 'g001ig0453', 'g001ig0301', 'g001ig0304', 'g001ig0303', 'g001ig0479', 'g000ig9041', 'g000ig9038', 'g001ig0300', 'g001ig0302',
     'g000ig9034', 'g000ig9024', 'g001ig0471', 'g001ig0470', 'g001ig0456', 'g001ig0458', 'g001ig0466', 'g001ig0457', 'g001ig0192', 'g001ig0191', 'g001ig0478', 'g001ig0489', 'g001ig0187', 'g001ig0469', 'g001ig0468',
@@ -380,18 +382,18 @@ local wand = {'g000ig6007', 'g000ig6006', 'g001ig0392', 'g001ig0391', 'g000ig600
 local rewardItems = { }
 
 if Type == 'town' and Zone == 'StartZonet1' then
-    table.insert(rewardItems, {id = 'g001ig0180', min = 2, max = 3}) -- heal 25
+    table.insert(rewardItems, {id = 'g001ig0180', min = 2, max = 2}) -- heal 25
     table.insert(rewardItems, {id = 'g000ig0005', min = 2, max = 2}) -- heal 50
-    table.insert(rewardItems, {id = Elexir[math.random(#Elexir)], min = 1, max = 1})
-    table.insert(rewardItems, {id = Elexir[math.random(#Elexir)], min = 1, max = 1})
+    table.insert(rewardItems, {id = 'g000ig5100', min = 2, max = 2}) -- moov 15%
     table.insert(rewardItems, {id = ElexirProtection[math.random(#ElexirProtection)], min = 1, max = 1})
     table.insert(rewardItems, {id = ElexirdotProtection[math.random(#ElexirdotProtection)], min = 1, max = 1})
     table.insert(rewardItems, {id = scrollT1[math.random(#scrollT1)], min = 1, max = 1})
     table.insert(rewardItems, {id = scrollDmgT1[math.random(#scrollDmgT1)], min = 1, max = 1})
     table.insert(rewardItems, {id = smallValuable[math.random(#smallValuable)], min = 1, max = 1})
-    table.insert(rewardItems, {id = Talismant2[math.random(#Talismant2)], min = 1, max = 1})
+    table.insert(rewardItems, {id = TravelT1[math.random(#TravelT1)], min = 1, max = 1})
 elseif Type == 'guard' and Zone == 'townt1' then
     table.insert(rewardItems, {id = 'g000ig0005', min = 2, max = 2})
+    table.insert(rewardItems, {id = 'g000ig0006', min = 1, max = 1})
     table.insert(rewardItems, {id = ElexirProtection[math.random(#ElexirProtection)], min = 1, max = 1})
     table.insert(rewardItems, {id = Elexir[math.random(#Elexir)], min = 1, max = 1})
     table.insert(rewardItems, {id = Talismant1[math.random(#Talismant1)], min = 1, max = 1})
@@ -400,240 +402,157 @@ elseif Type == 'town' and Zone == 'StartZonet2' then
     table.insert(rewardItems, {id = 'g001ig0180', min = 1, max = 2}) -- heal 25
     table.insert(rewardItems, {id = 'g000ig0001', min = 1, max = 2}) -- res
     table.insert(rewardItems, {id = 'g001ig0378', min = 1, max = 1}) -- heal 75
-    table.insert(rewardItems, {id = 'g000ig0006', min = 2, max = 2}) -- heal 100
-    table.insert(rewardItems, {id = 'g001ig0151', min = 1, max = 1}) -- 100 any mana
-    table.insert(rewardItems, {id = 'g001ig0095', min = 1, max = 1}) -- возможность устанавливать жезлы
-    table.insert(rewardItems, {id = ArtT1[math.random(#ArtT1)], min = 1, max = 1})
-    -- for i = 1,2 do
-    --     e = math.random(1, #ArtT1)
-    --     table.insert(rewardItems, {id = ArtT1[e], min = 1, max = 1})
-    --     table.remove(ArtT1, e)
-    -- end
-    table.insert(rewardItems, {id = scrollDmgT1[math.random(#scrollDmgT1)], min = 1, max = 1})
+    table.insert(rewardItems, {id = 'g000ig0006', min = 1, max = 1}) -- heal 100
+    table.insert(rewardItems, {id = 'g000ig5009', min = 1, max = 1}) -- 5x5
     table.insert(rewardItems, {id = weakOrbs[math.random(#weakOrbs)], min = 1, max = 1})
     table.insert(rewardItems, {id = Elexir[math.random(#Elexir)], min = 1, max = 1})
     table.insert(rewardItems, {id = ElexirProtection[math.random(#ElexirProtection)], min = 1, max = 1})
     table.insert(rewardItems, {id = ElexirdotProtection[math.random(#ElexirdotProtection)], min = 1, max = 1})
     table.insert(rewardItems, {id = mediumValuable[math.random(#mediumValuable)], min = 1, max = 1})
+    table.insert(rewardItems, {id = ArtT1[math.random(#ArtT1)], min = 1, max = 1})
 elseif Type == 'guard' and Zone == 'townt2' then
     table.insert(rewardItems, {id = 'g001ig0378', min = 2, max = 2}) -- heal 75
     table.insert(rewardItems, {id = 'g000ig0006', min = 2, max = 2}) -- heal 100
+    table.insert(rewardItems, {id = 'g001ig0151', min = 1, max = 1}) -- 100 any mana
+    table.insert(rewardItems, {id = scrollDmgT1[math.random(#scrollDmgT1)], min = 1, max = 1})
     table.insert(rewardItems, {id = scrollT1[math.random(#scrollT1)], min = 1, max = 1})
-    table.insert(rewardItems, {id = ElexirProtection[math.random(#ElexirProtection)], min = 1, max = 1})
 
-elseif Type == 'ruinst1' and Zone == 'StartZone' then
-    table.insert(rewardItems, ili({id = JewelT1[math.random(#JewelT1)], min = 1, max = 1}, {id = BannerT1[math.random(#BannerT1)], min = 1, max = 1}))
-
-elseif Type == 'ruinst2' and Zone == 'StartZone' then
-    table.insert(rewardItems, ili({id = ElexirPermanent[math.random(#ElexirPermanent)], min = 1, max = 1}, {id = TravelT1[math.random(#TravelT1)], min = 1, max = 1}))
-
-elseif Type == 'guard' and Zone == 'BigZone25' then
+elseif Type == 'guard' and Zone == 'BigZone' then
     table.insert(rewardItems, {id = 'g000ig0001', min = 2, max = 2}) -- res 
     table.insert(rewardItems, {id = 'g001ig0378', min = 1, max = 2}) -- heal 75 
-    table.insert(rewardItems, {id = 'g000ig0018', min = 1, max = 1}) -- heal 200
     table.insert(rewardItems, {id = 'g000ig0006', min = 2, max = 2}) -- heal 100
+    table.insert(rewardItems, {id = 'g000ig0018', min = 1, max = 1}) -- heal 200
     table.insert(rewardItems, {id = 'g000ig5100', min = 2, max = 2}) -- moov 15%
-    table.insert(rewardItems, ili({id = TravelT2[math.random(#TravelT2)], min = 1, max = 1}, {id = ArtT2[math.random(#ArtT2)], min = 1, max = 1}))
+    table.insert(rewardItems, {id = TravelT2[math.random(#TravelT2)], min = 1, max = 1})
     table.insert(rewardItems, ili({id = 'g001ig0560', min = 1, max = 1}, {id = 'g001ig0547', min = 1, max = 1}))
     table.insert(rewardItems, {id = Elexir[math.random(#Elexir)], min = 1, max = 1 })
     table.insert(rewardItems, {id = Elexirt2[math.random(#Elexirt2)], min = 1, max = 1 })
     table.insert(rewardItems, {id = ElexirProtection[math.random(#ElexirProtection)], min = 1, max = 1 })
     table.insert(rewardItems, {id = ElexirdotProtection[math.random(#ElexirdotProtection)], min = 1, max = 1})
     table.insert(rewardItems, {id = scrollT1[math.random(#scrollT1)], min = 1, max = 1 })
-    table.insert(rewardItems, {id = scrollT2[math.random(#scrollT2)], min = 1, max = 1 })
-    table.insert(rewardItems, {id = Talismant2[math.random(#Talismant2)], min = 1, max = 1 })
     table.insert(rewardItems, {id = scrollDmgT2[math.random(#scrollDmgT2)], min = 1, max = 1})
 
-
 elseif Type == 'townt3' and Zone == 'BigZone25' then
-    table.insert(rewardItems, {id = 'g000ig0001', min = 2, max = 2}) -- res
-    table.insert(rewardItems, {id = 'g001ig0378', min = 2, max = 2}) -- heal 75
+    table.insert(rewardItems, {id = 'g000ig0001', min = 1, max = 2}) -- res
+    table.insert(rewardItems, {id = 'g001ig0378', min = 1, max = 1}) -- heal 75
     table.insert(rewardItems, {id = 'g000ig0006', min = 2, max = 2}) -- heal 100
     table.insert(rewardItems, {id = 'g000ig0018', min = 1, max = 1}) -- heal 200
     table.insert(rewardItems, {id = mediumballmana[math.random(#mediumballmana)], min = 1, max = 1})
-    table.insert(rewardItems, ili({ id = JewelT2[math.random(#JewelT2)], min = 1, max = 1}, {id = BannerT2[math.random(#BannerT2)], min = 1, max = 1 }))
-    table.insert(rewardItems, {id = scrollT1[math.random(#scrollT1)], min = 1, max = 1})
+    table.insert(rewardItems, {id = JewelT2[math.random(#JewelT2)], min = 1, max = 1})
     table.insert(rewardItems, {id = Elexir[math.random(#Elexir)], min = 1, max = 1})
     table.insert(rewardItems, {id = ElexirProtection[math.random(#ElexirProtection)], min = 1, max = 1})
-    table.insert(rewardItems, {id = Elexirt2[math.random(#Elexirt2)], min = 1, max = 1})
     table.insert(rewardItems, {id = mediumValuable[math.random(#mediumValuable)], min = 1, max = 1})
-elseif Type == 'guard' and Zone == 'BZ25townt3' then
-    table.insert(rewardItems, {id = 'g000ig0005', min = 2, max = 2}) -- heal 50
+elseif Type == 'townt3' and Zone == 'BigZone14' then
+    table.insert(rewardItems, {id = 'g000ig0001', min = 1, max = 2}) -- res
+    table.insert(rewardItems, {id = 'g001ig0378', min = 1, max = 1}) -- heal 75
     table.insert(rewardItems, {id = 'g000ig0006', min = 2, max = 2}) -- heal 100
+    table.insert(rewardItems, {id = 'g000ig0018', min = 1, max = 1}) -- heal 200
+    table.insert(rewardItems, {id = mediumballmana[math.random(#mediumballmana)], min = 1, max = 1})
+    table.insert(rewardItems, {id = BannerT2[math.random(#BannerT2)], min = 1, max = 1})
+    table.insert(rewardItems, {id = Elexir[math.random(#Elexir)], min = 1, max = 1})
+    table.insert(rewardItems, {id = ElexirProtection[math.random(#ElexirProtection)], min = 1, max = 1})
+    table.insert(rewardItems, {id = mediumValuable[math.random(#mediumValuable)], min = 1, max = 1})
+elseif Type == 'guard' and Zone == 'BZtownt3' then
+    table.insert(rewardItems, {id = 'g000ig0005', min = 1, max = 2}) -- heal 50
+    table.insert(rewardItems, {id = 'g000ig0006', min = 1, max = 2}) -- heal 100
     table.insert(rewardItems, {id = wand[math.random(#wand)], min = 1, max = 1})
     table.insert(rewardItems, {id = weakOrbs[math.random(#weakOrbs)], min = 1, max = 1})
     table.insert(rewardItems, {id = scrollT2[math.random(#scrollT2)], min = 1, max = 1})
-    table.insert(rewardItems, {id = ElexirProtection[math.random(#ElexirProtection)], min = 1, max = 1})
+    table.insert(rewardItems, {id = ElexirdotProtection[math.random(#ElexirdotProtection)], min = 1, max = 1})
 
 
-elseif Type == 'townt4' and Zone == 'BigZone25' then
-    if playerRace == Race.Human then
-        table.insert(rewardItems, {id='g001ig0146', min = 1, max = 1})
-    elseif playerRace == Race.Elf then
-        table.insert(rewardItems, {id='g001ig0150', min = 1, max = 1})
-    elseif playerRace == Race.Heretic then
-        table.insert(rewardItems, {id='g001ig0147', min = 1, max = 1})
-    elseif playerRace == Race.Dwarf then
-        table.insert(rewardItems, {id='g001ig0148', min = 1, max = 1})
-    elseif playerRace == Race.Undead then
-        table.insert(rewardItems, {id='g001ig0149', min = 1, max = 1})
+elseif Type == 'townt4' and Zone == 'BigZone' then
+    if playerRace == Race.Human then table.insert(rewardItems, {id='g001ig0146', min = 1, max = 1})
+    elseif playerRace == Race.Elf then table.insert(rewardItems, {id='g001ig0150', min = 1, max = 1})
+    elseif playerRace == Race.Heretic then table.insert(rewardItems, {id='g001ig0147', min = 1, max = 1})
+    elseif playerRace == Race.Dwarf then table.insert(rewardItems, {id='g001ig0148', min = 1, max = 1})
+    elseif playerRace == Race.Undead then table.insert(rewardItems, {id='g001ig0149', min = 1, max = 1})
     end
-    table.insert(rewardItems, {id = 'g000ig0001', min = 1, max = 2}) -- res
-    table.insert(rewardItems, {id = 'g000ig0006', min = 2, max = 2}) -- heal 100
-    table.insert(rewardItems, {id = 'g000ig0018', min = 1, max = 1}) -- heal 200
-    table.insert(rewardItems, {id = 'g000ig5006', min = 1, max = 1}) -- moov 30%
+    table.insert(rewardItems, {id = 'g000ig0001', min = 1, max = 2}) 
+    table.insert(rewardItems, {id = 'g000ig0006', min = 2, max = 2})
+    table.insert(rewardItems, {id = 'g000ig0018', min = 1, max = 1})
+    table.insert(rewardItems, {id = 'g000ig5006', min = 1, max = 1}) 
+    table.insert(rewardItems, {id = 'g001ig0317', min = 1, max = 1})
     table.insert(rewardItems, {id = Elexir[math.random(#Elexir)], min = 1, max = 1})
-    table.insert(rewardItems, {id = ElexirProtection[math.random(#ElexirProtection)], min = 1, max = 1})
     table.insert(rewardItems, {id = ElexirProtection[math.random(#ElexirProtection)], min = 1, max = 1})
     table.insert(rewardItems, {id = ElexirdotProtection[math.random(#ElexirdotProtection)], min = 1, max = 1})
     table.insert(rewardItems, {id = Elexirt2[math.random(#Elexirt2)], min = 1, max = 1})
-    table.insert(rewardItems, {id = ElexirPermanent[math.random(#ElexirPermanent)], min = 1, max = 2})
-    table.insert(rewardItems, {id = mediumOrbs[math.random(#mediumOrbs)], min = 1, max = 1})
-    table.insert(rewardItems, {id = scrollT2[math.random(#scrollT2)], min = 1, max = 1})
     table.insert(rewardItems, {id = scrollDmgT2[math.random(#scrollDmgT2)], min = 1, max = 1})
-    table.insert(rewardItems, ili({id = JewelT2[math.random(#JewelT2)], min = 1, max = 1}, {id = ArtT2[math.random(#ArtT2)], min = 1, max = 1}))
-elseif Type == 'guard' and Zone == 'BZ25townt4' then
+    table.insert(rewardItems, {id = ArtT2[math.random(#ArtT2)], min = 1, max = 1})
+elseif Type == 'guard' and Zone == 'BZtownt4' then
     table.insert(rewardItems, {id = 'g000ig0006', min = 2, max = 2 } ) -- heal 100
     table.insert(rewardItems, {id = 'g000ig0018', min = 1, max = 1 } ) -- heal 200
     table.insert(rewardItems, {id = scrollT2[math.random(#scrollT2)], min = 1, max = 1})
     table.insert(rewardItems, {id = mediumOrbs[math.random(#mediumOrbs)], min = 1, max = 1})
 
-elseif Type == 'ruinst3' and Zone == 'BigZone25' then
-    table.insert(rewardItems, ili({id = ArtT3[math.random(#ArtT3)], min = 1, max = 1}, {id = ArtT2[math.random(#ArtT2)], min = 1, max = 1}))
-elseif Type == 'ruinst4' and Zone == 'BigZone25' then
-    table.insert(rewardItems, ili({id = BannerT3[math.random(#BannerT3)], min = 1, max = 1}, {id = BannerT2[math.random(#BannerT2)], min = 1, max = 1}))
-
-elseif Type == 'guard' and Zone == 'BigZone14' then
-    table.insert(rewardItems, {id = 'g000ig0001', min = 2, max = 2}) -- res  
-    table.insert(rewardItems, {id = 'g001ig0378', min = 2, max = 2}) -- heal 75
-    table.insert(rewardItems, {id = 'g000ig0006', min = 2, max = 2}) -- heal 100
-    table.insert(rewardItems, {id = 'g000ig0018', min = 1, max = 1}) -- heal 200
-    table.insert(rewardItems, {id = 'g000ig5100', min = 2, max = 2}) -- moov 15%
-    table.insert(rewardItems, ili({id = TravelT2[math.random(#TravelT2)], min = 1, max = 1}, {id = ArtT2[math.random(#ArtT2)], min = 1, max = 1}))
-    table.insert(rewardItems, ili({id = 'g001ig0560', min = 1, max = 1}, {id = 'g001ig0547', min = 1, max = 1}))
-    table.insert(rewardItems, {id = Elexir[math.random(#Elexir)], min = 1, max = 1})
-    table.insert(rewardItems, {id = Elexir[math.random(#Elexir)], min = 1, max = 1})
-    table.insert(rewardItems, {id = Elexirt2[math.random(#Elexirt2)], min = 1, max = 1})
-    table.insert(rewardItems, {id = ElexirProtection[math.random(#ElexirProtection)], min = 1, max = 1})
-    table.insert(rewardItems, {id = ElexirProtection[math.random(#ElexirProtection)], min = 1, max = 1})
-    table.insert(rewardItems, {id = ElexirdotProtection[math.random(#ElexirdotProtection)], min = 1, max = 1})
-    table.insert(rewardItems, {id = scrollT1[math.random(#scrollT1)], min = 1, max = 1})
-    table.insert(rewardItems, {id = scrollT2[math.random(#scrollT2)], min = 1, max = 1})
-    table.insert(rewardItems, {id = Talismant2[math.random(#Talismant2)], min = 1, max = 1})
-    table.insert(rewardItems, {id = scrollDmgT2[math.random(#scrollDmgT2)], min = 1, max = 1})
-
-elseif Type == 'townt3' and Zone == 'BigZone14' then
-    table.insert(rewardItems, {id = 'g000ig0001', min = 1, max = 2}) -- res
-    table.insert(rewardItems, {id = 'g000ig0006', min = 2, max = 2}) -- heal 100
-    table.insert(rewardItems, {id = 'g000ig0018', min = 1, max = 1}) -- heal 200
-    table.insert(rewardItems, {id = mediumballmana[math.random(#mediumballmana)], min = 1, max = 1})
-    table.insert(rewardItems, ili({id = JewelT2[math.random(#JewelT2)], min = 1, max = 1}, {id = ArtT2[math.random(#ArtT2)], min = 1, max = 1}))
-    table.insert(rewardItems, {id = Elexir[math.random(#Elexir)], min = 1, max = 1})
-    table.insert(rewardItems, {id = Elexir[math.random(#Elexir)], min = 1, max = 1})
-    table.insert(rewardItems, {id = ElexirProtection[math.random(#ElexirProtection)], min = 1, max = 1})
-    table.insert(rewardItems, {id = ElexirProtection[math.random(#ElexirProtection)], min = 1, max = 1})
-    table.insert(rewardItems, {id = Elexirt2[math.random(#Elexirt2)], min = 1, max = 1})
-    table.insert(rewardItems, {id = mediumValuable[math.random(#mediumValuable)], min = 1, max = 1})
-    table.insert(rewardItems, {id = scrollT1[math.random(#scrollT1)], min = 1, max = 1})
-elseif Type == 'guard' and Zone == 'BZ14townt3' then
-    table.insert(rewardItems, {id = 'g000ig0005', min = 2, max = 2}) -- heal 50
-    table.insert(rewardItems, {id = 'g000ig0006', min = 2, max = 2}) -- heal 100
-    table.insert(rewardItems, {id = scrollT2[math.random(#scrollT2)], min = 1, max = 1})
-    table.insert(rewardItems, {id = ElexirProtection[math.random(#ElexirProtection)], min = 1, max = 1})
- 
-elseif Type == 'townt4' and Zone == 'BigZone14' then
-    if playerRace == Race.Human then
-        table.insert(rewardItems, {id = 'g001ig0146', min = 1, max = 1})
-    elseif playerRace == Race.Elf then
-        table.insert(rewardItems, {id = 'g001ig0150', min = 1, max = 1})
-    elseif playerRace == Race.Heretic then
-        table.insert(rewardItems, {id = 'g001ig0147', min = 1, max = 1})
-    elseif playerRace == Race.Dwarf then
-        table.insert(rewardItems, {id = 'g001ig0148', min = 1, max = 1})
-    elseif playerRace == Race.Undead then
-        table.insert(rewardItems, {id = 'g001ig0149', min = 1, max = 1})
-    end
-    table.insert(rewardItems, {id = 'g000ig0001', min = 1, max = 2}) -- res
-    table.insert(rewardItems, {id = 'g000ig0006', min = 2, max = 2}) -- heal 100
-    table.insert(rewardItems, {id = 'g000ig0018', min = 1, max = 1}) -- heal 200
-    table.insert(rewardItems, {id = 'g000ig5006', min = 1, max = 1}) -- moov 30%
-    table.insert(rewardItems, {id = Elexir[math.random(#Elexir)], min = 1, max = 1})
-    table.insert(rewardItems, {id = ElexirProtection[math.random(#ElexirProtection)], min = 1, max = 1})
-    table.insert(rewardItems, {id = ElexirProtection[math.random(#ElexirProtection)], min = 1, max = 1})
-    table.insert(rewardItems, {id = ElexirdotProtection[math.random(#ElexirdotProtection)], min = 1, max = 1})
-    table.insert(rewardItems, {id = Elexirt2[math.random(#Elexirt2)], min = 1, max = 1})
-    table.insert(rewardItems, {id = ElexirPermanent[math.random(#ElexirPermanent)], min = 1, max = 2})
-    table.insert(rewardItems, {id = mediumOrbs[math.random(#mediumOrbs)], min = 1, max = 1})
-    table.insert(rewardItems, {id = scrollT2[math.random(#scrollT2)], min = 1, max = 1})
-    table.insert(rewardItems, {id = scrollDmgT2[math.random(#scrollDmgT2)], min = 1, max = 1})
-    table.insert(rewardItems, ili({id = BannerT2[math.random(#BannerT2)], min = 1, max = 1}, {id = JewelT2[math.random(#JewelT2)], min = 1, max = 1}))
-elseif Type == 'guard' and Zone == 'BZ14townt4' then
-    table.insert(rewardItems, {id = 'g000ig0006', min = 2, max = 2}) -- heal 100
-    table.insert(rewardItems, {id = 'g000ig0018', min = 1, max = 1}) -- heal 200
-    table.insert(rewardItems, {id = weakOrbs[math.random(#weakOrbs)], min = 1, max = 1})
-
-elseif Type == 'ruinst3' and Zone == 'BigZone14' then
-    table.insert(rewardItems, ili({id = JewelT3[math.random(#JewelT3)], min = 1, max = 1}, {id = JewelT2[math.random(#JewelT2)], min = 1, max = 1}))
-elseif Type == 'ruinst4' and Zone == 'BigZone14' then
-    table.insert(rewardItems, ili({id = ArtT3[math.random(#ArtT3)], min = 1, max = 1}, {id = ArtT2[math.random(#ArtT2)], min = 1, max = 1}))
 
 elseif Type == 'townt4' and Zone == 'VSZone' then
-    table.insert(rewardItems, {id = 'g000ig0006', min = 3, max = 3}) -- heal 100
-    table.insert(rewardItems, {id = 'g000ig0018', min = 2, max = 2}) -- heal 200
+    table.insert(rewardItems, {id = 'g000ig0006', min = 2, max = 2}) -- heal 100
+    table.insert(rewardItems, {id = 'g000ig0018', min = 1, max = 1}) -- heal 200
     table.insert(rewardItems, {id = bigballmana[math.random(#bigballmana)], min = 1, max = 1})
-    table.insert(rewardItems, {id = scrollT1[math.random(#scrollT1)], min = 1, max = 1})
-    table.insert(rewardItems, {id = scrollT2[math.random(#scrollT2)], min = 1, max = 1})
-    table.insert(rewardItems, {id = scrollT3[math.random(#scrollT3)], min = 1, max = 1})
-    table.insert(rewardItems, {id = BannerT3[math.random(#BannerT3)], min = 1, max = 1})
     table.insert(rewardItems, {id = Elexir[math.random(#Elexir)], min = 1, max = 1})
     table.insert(rewardItems, {id = ElexirdotProtection[math.random(#ElexirdotProtection)], min = 1, max = 1})
-    table.insert(rewardItems, {id = ElexirdotProtection[math.random(#ElexirdotProtection)], min = 1, max = 1})
     table.insert(rewardItems, {id = ElexirProtection[math.random(#ElexirProtection)], min = 1, max = 1})
+    table.insert(rewardItems, {id = ElexirPermanent[math.random(#ElexirPermanent)], min = 1, max = 1})
     table.insert(rewardItems, {id = Elexirt2[math.random(#Elexirt2)], min = 1, max = 1})
-    table.insert(rewardItems, {id = ProtectPermanent[math.random(#ProtectPermanent)], min = 1, max = 1})
+    table.insert(rewardItems, {id = scrollT3[math.random(#scrollT3)], min = 1, max = 1})
     table.insert(rewardItems, {id = strongOrbs[math.random(#strongOrbs)], min = 1, max = 1})
-    table.insert(rewardItems, {id = scrollDmgT2[math.random(#scrollDmgT2)], min = 1, max = 1})
+    table.insert(rewardItems, {id = scrollDmgT3[math.random(#scrollDmgT3)], min = 1, max = 1})
+    table.insert(rewardItems, {id = BannerT3[math.random(#BannerT3)], min = 1, max = 1})
 elseif Type == 'guard' and Zone == 'vstownt4' then
     table.insert(rewardItems, {id = 'g000ig0001', min = 2, max = 2}) -- res
-    table.insert(rewardItems, {id = 'g001ig0152', min = 2, max = 2}) -- heal 300
+    table.insert(rewardItems, {id = 'g001ig0152', min = 1, max = 1}) -- heal 300
     table.insert(rewardItems, {id = 'g000ig0006', min = 2, max = 2}) -- heal 100
-    table.insert(rewardItems, {id = 'g000ig0018', min = 2, max = 2}) -- heal 200
+    table.insert(rewardItems, {id = 'g000ig0018', min = 1, max = 1}) -- heal 200
     table.insert(rewardItems, {id = scrollT2[math.random(#scrollT2)], min = 1, max = 1})
 
 elseif Type == 'townt5' and Zone == 'VSZone' then
-    table.insert(rewardItems, {id = 'g001ig0152', min = 2, max = 3}) -- heal 300
-    table.insert(rewardItems, {id = 'g000ig0006', min = 3, max = 3}) -- heal 100
-    table.insert(rewardItems, {id = 'g000ig0018', min = 2, max = 2}) -- heal 200
-    table.insert(rewardItems, {id = ArtT4[math.random(#ArtT4)], min = 1, max = 1})
+    table.insert(rewardItems, {id = 'g001ig0152', min = 1, max = 1}) -- heal 300
+    table.insert(rewardItems, {id = 'g000ig0006', min = 2, max = 2}) -- heal 100
+    table.insert(rewardItems, {id = 'g000ig0018', min = 1, max = 1}) -- heal 200
     table.insert(rewardItems, {id = Elexir[math.random(#Elexir)], min = 1, max = 1})
     table.insert(rewardItems, {id = ElexirProtection[math.random(#ElexirProtection)], min = 1, max = 1})
     table.insert(rewardItems, {id = ElexirdotProtection[math.random(#ElexirdotProtection)], min = 1, max = 1})
-    table.insert(rewardItems, {id = ElexirdotProtection[math.random(#ElexirdotProtection)], min = 1, max = 1})
-    table.insert(rewardItems, {id = strongOrbs[math.random(#strongOrbs)], min = 1, max = 1})
     table.insert(rewardItems, {id = Elexirt2[math.random(#Elexirt2)], min = 1, max = 1})
-    table.insert(rewardItems, {id = scrollT3[math.random(#scrollT3)], min = 1, max = 1})
-    table.insert(rewardItems, {id = ElexirPermanentT2[math.random(#ElexirPermanentT2)], min = 1, max = 1})
+    table.insert(rewardItems, {id = scrollT2[math.random(#scrollT2)], min = 1, max = 1})
     table.insert(rewardItems, {id = ProtectPermanent[math.random(#ProtectPermanent)], min = 1, max = 1})
-    table.insert(rewardItems, {id = scrollDmgT2[math.random(#scrollDmgT2)], min = 1, max = 1})
+    table.insert(rewardItems, {id = scrollDmgT4[math.random(#scrollDmgT4)], min = 1, max = 1})
+    table.insert(rewardItems, {id = ArtT3[math.random(#ArtT3)], min = 1, max = 1})
 elseif Type == 'guard' and Zone == 'vstownt5' then
     table.insert(rewardItems, {id = 'g000ig0001', min = 2, max = 2}) -- res
-    table.insert(rewardItems, {id = 'g001ig0152', min = 2, max = 2}) -- heal 300
+    table.insert(rewardItems, {id = 'g001ig0152', min = 1, max = 1}) -- heal 300
     table.insert(rewardItems, {id = 'g000ig0006', min = 2, max = 2}) -- heal 100
-    table.insert(rewardItems, {id = 'g000ig0018', min = 2, max = 2}) -- heal 200
+    table.insert(rewardItems, {id = 'g000ig0018', min = 1, max = 1}) -- heal 200
     table.insert(rewardItems, {id = scrollT3[math.random(#scrollT3)], min = 1, max = 1 } )
     table.insert(rewardItems, {id = AuraPermanent[math.random(#AuraPermanent)], min = 1, max = 1})
+
+
+
+elseif Type == 'ruinst1' and Zone == 'StartZone' then
+    table.insert(rewardItems, {id = BannerT1[math.random(#BannerT1)], min = 1, max = 1})
+elseif Type == 'ruinst2' and Zone == 'StartZone' then
+    table.insert(rewardItems, {id = ElexirPermanent[math.random(#ElexirPermanent)], min = 1, max = 1})
+
+elseif Type == 'ruinst3' and Zone == 'BigZone25' then
+    table.insert(rewardItems, {id = BannerT2[math.random(#BannerT2)], min = 1, max = 1})
+elseif Type == 'ruinst4' and Zone == 'BigZone25' then
+    table.insert(rewardItems, {id = JewelT3[math.random(#JewelT3)], min = 1, max = 1})
+
+elseif Type == 'ruinst3' and Zone == 'BigZone14' then
+    table.insert(rewardItems, {id = JewelT2[math.random(#JewelT2)], min = 1, max = 1})
+elseif Type == 'ruinst4' and Zone == 'BigZone14' then
+    table.insert(rewardItems, {id = BannerT3[math.random(#BannerT3)], min = 1, max = 1})
 
 elseif Type == 'ruins' and Zone == 'VSZonet4' then
     table.insert(rewardItems, {id = JewelT4[math.random(#JewelT4)], min = 1, max = 1})
 elseif Type == 'ruins' and Zone == 'VSZonet5' then
     table.insert(rewardItems, {id = BannerT4[math.random(#BannerT4)], min = 1, max = 1})
 
-elseif Type == 'guard' and Zone == 'BZ12' then
-    table.insert(rewardItems, ili({id = JewelT3[math.random(#JewelT3)], min = 1, max = 1}, {id = ArtT3[math.random(#ArtT3)], min = 1, max = 1}))
+elseif Type == 'guard' and Zone == 'BZ' then
+    table.insert(rewardItems, {id = ArtT3[math.random(#ArtT3)], min = 1, max = 1})
     table.insert(rewardItems, {id = Elexirt2[math.random(#Elexirt2)], min = 1, max = 1})
     table.insert(rewardItems, {id = ElexirProtection[math.random(#ElexirProtection)], min = 1, max = 1})
     table.insert(rewardItems, {id = ElexirdotProtection[math.random(#ElexirdotProtection)], min = 1, max = 1})
-    table.insert(rewardItems, {id = Elexirt2[math.random(#Elexirt2)], min = 1, max = 1})
     table.insert(rewardItems, {id = scrollT3[math.random(#scrollT3)], min = 1, max = 1})
     table.insert(rewardItems, {id = ElexirProtection[math.random(#ElexirProtection)], min = 1, max = 1})
     table.insert(rewardItems, {id = Elexir[math.random(#Elexir)], min = 1, max = 1})
@@ -643,24 +562,9 @@ elseif Type == 'guard' and Zone == 'BZ12' then
     table.insert(rewardItems, {id = mediumOrbs[math.random(#mediumOrbs)], min = 1, max = 1})
     table.insert(rewardItems, {id = scrollDmgT2[math.random(#scrollDmgT2)], min = 1, max = 1})
 
-elseif Type == 'guard' and Zone == 'BZ45' then
-    table.insert(rewardItems, ili({id = BannerT3[math.random(#BannerT3)], min = 1, max = 1}, {id = ArtT3[math.random(#ArtT3)], min = 1, max = 1}))
-    table.insert(rewardItems, {id = Elexirt2[math.random(#Elexirt2)], min = 1, max = 1})
-    table.insert(rewardItems, {id = ElexirProtection[math.random(#ElexirProtection)], min = 1, max = 1})
-    table.insert(rewardItems, {id = ElexirdotProtection[math.random(#ElexirdotProtection)], min = 1, max = 1})
-    table.insert(rewardItems, {id = Elexirt2[math.random(#Elexirt2)], min = 1, max = 1})
-    table.insert(rewardItems, {id = scrollT3[math.random(#scrollT3)], min = 1, max = 1})
-    table.insert(rewardItems, {id = ElexirProtection[math.random(#ElexirProtection)], min = 1, max = 1})
-    table.insert(rewardItems, {id = Elexir[math.random(#Elexir)], min = 1, max = 1})
-    table.insert(rewardItems, {id = 'g000ig0001', min = 1, max = 1}) -- res
-    table.insert(rewardItems, {id = 'g000ig0018', min = 2, max = 2}) -- heal 200
-    table.insert(rewardItems, {id = 'g001ig0151', min = 1, max = 1}) -- 100any
-    table.insert(rewardItems, {id = mediumOrbs[math.random(#mediumOrbs)], min = 1, max = 1})
-    table.insert(rewardItems, {id = scrollDmgT2[math.random(#scrollDmgT2)], min = 1, max = 1})
-
 elseif Type == 'guard' and Zone == 'GO' then
-    table.insert(rewardItems, ili({id = BannerT3[math.random(#BannerT3)], min = 1, max = 1}, {id = TravelT3[math.random(#TravelT3)], min = 1, max = 1}))
-    table.insert(rewardItems, ili({id = JewelT3[math.random(#JewelT3)], min = 1, max = 1}, {id = JewelT4[math.random(#JewelT4)], min = 1, max = 1}))
+    table.insert(rewardItems, {id = ArtT4[math.random(#ArtT4)], min = 1, max = 1})
+    table.insert(rewardItems, {id = JewelT4[math.random(#JewelT4)], min = 1, max = 1})
     table.insert(rewardItems, {id = Elexirt2[math.random(#Elexirt2)], min = 1, max = 1})
     table.insert(rewardItems, {id = ElexirProtection[math.random(#ElexirProtection)], min = 1, max = 1})
     table.insert(rewardItems, {id = ElexirdotProtection[math.random(#ElexirdotProtection)], min = 1, max = 1})
@@ -728,7 +632,6 @@ elseif Type == 'stack3' and Zone == 'startZone' then
     table.insert(rewardItems, {id = Elexir[math.random(#Elexir)], min = 1, max = 1})
     table.insert(rewardItems, {id = ElexirProtection[math.random(#ElexirProtection)], min = 1, max = 1})
     table.insert(rewardItems, {id = weakOrbs[math.random(#weakOrbs)], min = 1, max = 1})
-    table.insert(rewardItems, {id = ElexirProtection[math.random(#ElexirProtection)], min = 1, max = 1})
 elseif Type == 'stack4' and Zone == 'startZone' then
     table.insert(rewardItems, {id = 'g000ig0005', min = 2, max = 2}) -- heal 50
     table.insert(rewardItems, {id = 'g000ig0006', min = 2, max = 2}) -- heal 100
@@ -738,6 +641,9 @@ elseif Type == 'stack4' and Zone == 'startZone' then
     table.insert(rewardItems, {id = scrollT1[math.random(#scrollT1)], min = 1, max = 1})
     table.insert(rewardItems, {id = scrollDmgT1[math.random(#scrollDmgT1)], min = 1, max = 1})
     table.insert(rewardItems, {id = ElexirProtection[math.random(#ElexirProtection)], min = 1, max = 1})
+elseif Type == 'stackArt' and Zone == 'startZone' then
+    table.insert(rewardItems, {id = 'g000ig5100', min = 2, max = 2}) -- moov 15%
+    table.insert(rewardItems, {id = JewelT1[math.random(#JewelT1)], min = 1, max = 1})
 
 elseif Type == 'stack1' and Zone == 'BigZone' then
     table.insert(rewardItems, {id = 'g000ig0005', min = 1, max = 1}) -- heal 50
@@ -779,16 +685,13 @@ elseif Type == 'stack5' and Zone == 'BigZone' then
     table.insert(rewardItems, {id = Talismant2[math.random(#Talismant2)], min = 1, max = 1})
     table.insert(rewardItems, {id = ElexirProtection[math.random(#ElexirProtection)], min = 1, max = 1})
 	table.insert(rewardItems, {id = scrollT2[math.random(#scrollT2)], min = 1, max = 1})
+elseif Type == 'stackArt' and Zone == 'BigZone' then
+    table.insert(rewardItems, {id = ArtT3[math.random(#ArtT3)], min = 1, max = 1})
+    table.insert(rewardItems, {id = 'g001ig0032', min = 1, max = 1}) -- 5%hp
+    table.insert(rewardItems, {id = 'g000ig0005', min = 2, max = 2}) -- heal 50
+    table.insert(rewardItems, {id = scrollDmgT3[math.random(#scrollDmgT3)], min = 1, max = 1})
 
--- elseif Type == 'stackArt' and Zone == 'BigZone' then
---     table.insert(rewardItems, {id = 'g000ig5006', min = 1, max = 1}) -- moov 30%
 
---     -- table.insert(rewardItems, {id = ArtT1[math.random(#ArtT1)], min = 1, max = 1})
---     for i = 1,2 do
---         e = math.random(1, #ArtT1)
---         table.insert(rewardItems, {id = ArtT1[e], min = 1, max = 1})
---         table.remove(ArtT1, e)
---     end
 elseif Type == 'stackt4' and Zone == 'VSZone' then
     table.insert(rewardItems, {id = 'g000ig0001', min = 2, max = 2}) -- res
     table.insert(rewardItems, {id = 'g000ig0006', min = 2, max = 2}) -- heal 100
@@ -803,7 +706,7 @@ elseif Type == 'stackt4' and Zone == 'VSZone' then
     table.insert(rewardItems, {id = ElexirdotProtection[math.random(#ElexirdotProtection)], min = 1, max = 1})
     table.insert(rewardItems, {id = ElexirProtection[math.random(#ElexirProtection)], min = 1, max = 1})
     table.insert(rewardItems, {id = mediumOrbs[math.random(#mediumOrbs)], min = 1, max = 1})
-    table.insert(rewardItems, {id = ArtT3[math.random(#ArtT3)], min = 1, max = 1})
+    table.insert(rewardItems, {id = ArtT1[math.random(#ArtT1)], min = 1, max = 1})
     table.insert(rewardItems, {id = ElexirPermanent[math.random(#ElexirPermanent)], min = 1, max = 1})
 
 elseif Type == 'stackt5' and Zone == 'VSZone' then
@@ -820,8 +723,7 @@ elseif Type == 'stackt5' and Zone == 'VSZone' then
     table.insert(rewardItems, {id = ElexirProtection[math.random(#ElexirProtection)], min = 1, max = 1})
     table.insert(rewardItems, {id = ElexirdotProtection[math.random(#ElexirdotProtection)], min = 1, max = 1})
     table.insert(rewardItems, {id = mediumOrbs[math.random(#mediumOrbs)], min = 1, max = 1})
-    table.insert(rewardItems, {id = JewelT3[math.random(#JewelT3)], min = 1, max = 1})
-    table.insert(rewardItems, {id = ElexirPermanentT2[math.random(#ElexirPermanentT2)], min = 1, max = 1})
+    table.insert(rewardItems, {id = JewelT1[math.random(#JewelT1)], min = 1, max = 1})
     table.insert(rewardItems, {id = scrollDmgT3[math.random(#scrollDmgT3)], min = 1, max = 1})
 
 elseif Type == 'stackt6' and Zone == 'VSZone' then
@@ -882,8 +784,6 @@ elseif Type == 'bags' and Zone == 'BigZone' then
     table.insert(rewardItems, {id = weakOrbs[math.random(#weakOrbs)], min = 1, max = 1})
     table.insert(rewardItems, {id = mediumOrbs[math.random(#mediumOrbs)], min = 1, max = 1})
     table.insert(rewardItems, {id = mediumOrbs[math.random(#mediumOrbs)], min = 1, max = 1})
-    table.insert(rewardItems, {id = ElexirPermanent[math.random(#ElexirPermanent)], min = 1, max = 1})
-    table.insert(rewardItems, {id = scrollDmgT2[math.random(#scrollDmgT2)], min = 1, max = 1})
 
 elseif Type == 'bags' and Zone == 'VSZone' then
     table.insert(rewardItems, {id = 'g000ig0001', min = 4, max = 5}) -- res
@@ -899,7 +799,6 @@ elseif Type == 'bags' and Zone == 'VSZone' then
     table.insert(rewardItems, {id = Elexirt2[math.random(#Elexirt2)], min = 1, max = 1})
     table.insert(rewardItems, {id = Elexirt2[math.random(#Elexirt2)], min = 1, max = 1})
     table.insert(rewardItems, {id = Elexirt2[math.random(#Elexirt2)], min = 1, max = 1})
-    table.insert(rewardItems, {id = ElexirPermanent[math.random(#ElexirPermanent)], min = 1, max = 1})
     table.insert(rewardItems, {id = ElexirProtection[math.random(#ElexirProtection)], min = 1, max = 1})
     table.insert(rewardItems, {id = ElexirProtection[math.random(#ElexirProtection)], min = 1, max = 1})
     table.insert(rewardItems, {id = ElexirProtection[math.random(#ElexirProtection)], min = 1, max = 1})
@@ -917,7 +816,6 @@ elseif Type == 'bags' and Zone == 'VSZone' then
     table.insert(rewardItems, {id = scrollT3[math.random(#scrollT3)], min = 1, max = 1})
     table.insert(rewardItems, {id = scrollT3[math.random(#scrollT3)], min = 1, max = 1})
     table.insert(rewardItems, {id = scrollDmgT2[math.random(#scrollDmgT2)], min = 1, max = 1})
-    table.insert(rewardItems, {id = scrollDmgT3[math.random(#scrollDmgT3)], min = 1, max = 1})
 
 elseif Type == 'merchants' and Zone == 'startZone' then
     table.insert(rewardItems, {id = 'g000ig0001', min = 2, max = 2}) -- res
@@ -925,11 +823,6 @@ elseif Type == 'merchants' and Zone == 'startZone' then
     table.insert(rewardItems, {id = 'g001ig0378', min = 2, max = 2}) -- хил 75
     table.insert(rewardItems, {id = 'g000ig0006', min = 2, max = 2}) -- хил 100
     table.insert(rewardItems, {id = ArtT1[math.random(#ArtT1)], min = 1, max = 1})
-    -- for i = 1,2 do
-    --     e = math.random(1, #ArtT1)
-    --     table.insert(rewardItems, {id = ArtT1[e], min = 1, max = 1})
-    --     table.remove(ArtT1, e)
-    -- end
     table.insert(rewardItems, {id = BannerT1[math.random(#BannerT1)], min = 1, max = 1})
     table.insert(rewardItems, {id = JewelT1[math.random(#JewelT1)], min = 1, max = 1})
     table.insert(rewardItems, {id = TravelT1[math.random(#TravelT1)], min = 1, max = 1})
@@ -964,7 +857,7 @@ elseif Type == 'merchants' and Zone == 'startZone' then
     table.insert(rewardItems, {id = Talismant2[math.random(#Talismant2)], min = 1, max = 1})
     table.insert(rewardItems, {id = Talismant2[math.random(#Talismant2)], min = 1, max = 1})
 
-elseif Type == 'merchants' and Zone == 'BigZone14' then
+elseif Type == 'merchants' and Zone == 'BigZone' then
     table.insert(rewardItems, {id = 'g000ig0001', min = 4, max = 4}) -- res
     table.insert(rewardItems, {id = 'g000ig0005', min = 4, max = 4}) -- heal 50
     table.insert(rewardItems, {id = 'g001ig0378', min = 4, max = 4}) -- хил 75
@@ -985,20 +878,14 @@ elseif Type == 'merchants' and Zone == 'BigZone14' then
     table.insert(rewardItems, {id = Elexir[math.random(#Elexir)], min = 1, max = 2})
     table.insert(rewardItems, {id = Elexir[math.random(#Elexir)], min = 1, max = 2})
     table.insert(rewardItems, {id = Elexir[math.random(#Elexir)], min = 1, max = 2})
-    table.insert(rewardItems, {id = Elexir[math.random(#Elexir)], min = 1, max = 2})
-    table.insert(rewardItems, {id = Elexir[math.random(#Elexir)], min = 1, max = 2})
     table.insert(rewardItems, {id = scrollDmgT2[math.random(#scrollDmgT2)], min = 1, max = 1})
     table.insert(rewardItems, {id = ElexirProtection[math.random(#ElexirProtection)], min = 1, max = 2})
     table.insert(rewardItems, {id = ElexirProtection[math.random(#ElexirProtection)], min = 1, max = 2})
     table.insert(rewardItems, {id = ElexirProtection[math.random(#ElexirProtection)], min = 1, max = 2})
     table.insert(rewardItems, {id = ElexirProtection[math.random(#ElexirProtection)], min = 1, max = 2})
-    table.insert(rewardItems, {id = ElexirProtection[math.random(#ElexirProtection)], min = 1, max = 2})
-    table.insert(rewardItems, {id = ElexirProtection[math.random(#ElexirProtection)], min = 1, max = 2})
     table.insert(rewardItems, {id = ElexirdotProtection[math.random(#ElexirdotProtection)], min = 1, max = 1})
     table.insert(rewardItems, {id = ElexirdotProtection[math.random(#ElexirdotProtection)], min = 1, max = 1})
     table.insert(rewardItems, {id = ElexirdotProtection[math.random(#ElexirdotProtection)], min = 1, max = 1})
-    table.insert(rewardItems, {id = ElexirdotProtection[math.random(#ElexirdotProtection)], min = 1, max = 1})
-    table.insert(rewardItems, {id = Elexirt2[math.random(#Elexirt2)], min = 1, max = 2})
     table.insert(rewardItems, {id = Elexirt2[math.random(#Elexirt2)], min = 1, max = 2})
     table.insert(rewardItems, {id = Elexirt2[math.random(#Elexirt2)], min = 1, max = 2})
     table.insert(rewardItems, {id = Elexirt2[math.random(#Elexirt2)], min = 1, max = 2})
@@ -1006,46 +893,6 @@ elseif Type == 'merchants' and Zone == 'BigZone14' then
     table.insert(rewardItems, {id = ElexirPermanent[math.random(#ElexirPermanent)], min = 1, max = 1})
     table.insert(rewardItems, {id = ElexirPermanentT2[math.random(#ElexirPermanentT2)], min = 1, max = 1})
     table.insert(rewardItems, {id = Permanentskill[math.random(#Permanentskill)], min = 1, max = 1})
-
-elseif Type == "merchants" and Zone == "BigZone25" then
-    table.insert(rewardItems, {id = 'g000ig0001', min = 4, max = 4}) -- res
-    table.insert(rewardItems, {id = 'g000ig0005', min = 4, max = 4}) -- heal 50
-    table.insert(rewardItems, {id = 'g001ig0378', min = 4, max = 4}) -- хил 75
-    table.insert(rewardItems, {id = 'g000ig0006', min = 4, max = 4}) -- хил 100
-    table.insert(rewardItems, {id = 'g000ig0018', min = 4, max = 4}) -- хил 200
-    table.insert(rewardItems, {id = ArtT2[math.random(#ArtT2)], min = 1, max = 1})
-    table.insert(rewardItems, {id = ArtT1[math.random(#ArtT1)], min = 1, max = 1})
-    table.insert(rewardItems, {id = BannerT2[math.random(#BannerT2)], min = 1, max = 1})
-    table.insert(rewardItems, {id = BannerT1[math.random(#BannerT1)], min = 1, max = 1})
-    table.insert(rewardItems, {id = TravelT2[math.random(#TravelT2)], min = 1, max = 1})
-    table.insert(rewardItems, {id = JewelT2[math.random(#JewelT2)], min = 1, max = 1})
-    table.insert(rewardItems, {id = JewelT1[math.random(#JewelT1)], min = 1, max = 1})
-    table.insert(rewardItems, {id = Elexir[math.random(#Elexir)], min = 1, max = 2})
-    table.insert(rewardItems, {id = Elexir[math.random(#Elexir)], min = 1, max = 2})
-    table.insert(rewardItems, {id = Elexir[math.random(#Elexir)], min = 1, max = 2})
-    table.insert(rewardItems, {id = Elexir[math.random(#Elexir)], min = 1, max = 2})
-    table.insert(rewardItems, {id = Elexir[math.random(#Elexir)], min = 1, max = 2})
-    table.insert(rewardItems, {id = Elexir[math.random(#Elexir)], min = 1, max = 2})
-    table.insert(rewardItems, {id = scrollDmgT2[math.random(#scrollDmgT2)], min = 1, max = 1})
-    table.insert(rewardItems, {id = ElexirProtection[math.random(#ElexirProtection)], min = 1, max = 2})
-    table.insert(rewardItems, {id = ElexirProtection[math.random(#ElexirProtection)], min = 1, max = 2})
-    table.insert(rewardItems, {id = ElexirProtection[math.random(#ElexirProtection)], min = 1, max = 2})
-    table.insert(rewardItems, {id = ElexirProtection[math.random(#ElexirProtection)], min = 1, max = 2})
-    table.insert(rewardItems, {id = ElexirProtection[math.random(#ElexirProtection)], min = 1, max = 2})
-    table.insert(rewardItems, {id = ElexirProtection[math.random(#ElexirProtection)], min = 1, max = 2})
-    table.insert(rewardItems, {id = ElexirdotProtection[math.random(#ElexirdotProtection)], min = 1, max = 1})
-    table.insert(rewardItems, {id = ElexirdotProtection[math.random(#ElexirdotProtection)], min = 1, max = 1})
-    table.insert(rewardItems, {id = ElexirdotProtection[math.random(#ElexirdotProtection)], min = 1, max = 1})
-    table.insert(rewardItems, {id = ElexirdotProtection[math.random(#ElexirdotProtection)], min = 1, max = 1})
-    table.insert(rewardItems, {id = Elexirt2[math.random(#Elexirt2)], min = 1, max = 2})
-    table.insert(rewardItems, {id = Elexirt2[math.random(#Elexirt2)], min = 1, max = 2})
-    table.insert(rewardItems, {id = Elexirt2[math.random(#Elexirt2)], min = 1, max = 2})
-    table.insert(rewardItems, {id = Elexirt2[math.random(#Elexirt2)], min = 1, max = 2})
-    table.insert(rewardItems, {id = Elexirt2[math.random(#Elexirt2)], min = 1, max = 2})
-    table.insert(rewardItems, {id = ElexirPermanent[math.random(#ElexirPermanent)], min = 1, max = 1})
-    table.insert(rewardItems, {id = ElexirPermanentT2[math.random(#ElexirPermanentT2)], min = 1, max = 1})
-    table.insert(rewardItems, {id = Permanentskill[math.random(#Permanentskill)], min = 1, max = 1})
-
 
 elseif Type == 'merchants' and Zone == 'VSZone' then
     table.insert(rewardItems, {id = 'g000ig0001', min = 4, max = 4}) -- res
@@ -1104,7 +951,7 @@ elseif Type == 'merchants' and Zone == 'VSZone' then
     table.insert(rewardItems, {id = Elexirt2[math.random(#Elexirt2)], min = 1, max = 2})
     table.insert(rewardItems, {id = Elexirt2[math.random(#Elexirt2)], min = 1, max = 2})
     table.insert(rewardItems, {id = ElexirPermanent[math.random(#ElexirPermanent)], min = 1, max = 1})
-    table.insert(rewardItems, {id = ElexirPermanentT2[math.random(#ElexirPermanentT2)], min = 1, max = 1})
+    table.insert(rewardItems, {id = ElexirPermanentT3[math.random(#ElexirPermanentT2)], min = 1, max = 1})
     table.insert(rewardItems, {id = Permanentskill[math.random(#Permanentskill)], min = 1, max = 1})
     table.insert(rewardItems, ili({id = 'g001ig0375', min = 1, max = 1}, {id = 'g001ig0500', min = 1, max = 1})) -- znamya naslediya ili znamya padshego hranitelya
     table.insert(rewardItems, ili({id = 'g001ig0368', min = 1, max = 1}, {id = 'g001ig0356', min = 1, max = 1})) -- znamya ot obichnogo urona ili zelie ot obichnogo urona
@@ -1249,22 +1096,22 @@ function getGuardRuins(tier)
     local expValueGuard = { }
     if (tier == 1) then
         expValueGuard.min = 200
-        expValueGuard.max = 260
+        expValueGuard.max = 270
     elseif (tier == 2) then
         expValueGuard.min = 240
-        expValueGuard.max = 320
+        expValueGuard.max = 330
     elseif (tier == 3) then
         expValueGuard.min = 320
         expValueGuard.max = 490
     elseif (tier == 4) then
         expValueGuard.min = 510
-        expValueGuard.max = 780
+        expValueGuard.max = 790
     elseif (tier == 5) then
         expValueGuard.min = 800
         expValueGuard.max = 1190
     elseif (tier == 6) then
         expValueGuard.min = 1100
-        expValueGuard.max = 1750
+        expValueGuard.max = 1760
     end
     return {
         subraceTypes = squadStack,
@@ -1447,6 +1294,7 @@ function getStartZone(zoneId, playerRace, zoneSize)
         {id = 'g000ig7002', min = 1, max = 1},
         {id = 'g001ig0453', min = 1, max = 1},
         {id = 'g001ig0469', min = 1, max = 1},
+        {id = 'g000ig5084', min = 1, max = 1},
         ili(ili({id = 'g001ig0187', min = 1, max = 1}, {id = 'g001ig0188', min = 1, max = 1}), ili({id = 'g001ig0190', min = 1, max = 1}, {id = 'g001ig0191', min = 1, max = 1}))
     }
     if playerRace == Race.Human then
@@ -1474,7 +1322,8 @@ function getStartZone(zoneId, playerRace, zoneSize)
         stacks = {getStack(1, 3, getReward('stack1', 'startZone')),
                   getStack(1, 4, getReward('stack2', 'startZone')),
                   getStack(2, 3, getReward('stack3', 'startZone')),
-                  getStack(2, 4, getReward('stack4', 'startZone'))},
+                  getStack(2, 4, getReward('stack4', 'startZone')),
+                  getStack(3, 1, getReward('stackArt', 'startZone'))},
         ruins = {getRuins({min = 229, max = 279}, getGuardRuins(1), getReward('ruinst1', 'StartZone')),
                  getRuins({min = 279, max = 359}, getGuardRuins(2), getReward('ruinst2', 'StartZone'))},
         merchants = {{goods = {items = getReward('merchants', 'startZone')},
@@ -1497,15 +1346,16 @@ function getBigZone1(zoneId, playerRace, zoneSize)
 			getStack(3, 4, getReward('stack2', 'BigZone')),
             getStack(3, 5, getReward('stack3', 'BigZone')),
             getStack(4, 4, getReward('stack4', 'BigZone')),
-            getStack(4, 6, getReward('stack5', 'BigZone'))},
+            getStack(4, 6, getReward('stack5', 'BigZone')),
+            getStack(5, 1, getReward('stackArt', 'BigZone'))},
         ruins = {getRuins({min = 420, max = 530}, getGuardRuins(3), getReward('ruinst3', 'BigZone14')),
                  getRuins({min = 420, max = 530}, getGuardRuins(4), getReward('ruinst4', 'BigZone14'))},
         mercenaries = {getMercenaries14(getGuard(3))},
-        merchants = {{goods = {items = getReward('merchants', 'BigZone14')},
+        merchants = {{goods = {items = getReward('merchants', 'BigZone')},
                       guard = getGuard(3, getReward('guard', 'merchantst2'))}},
         mages = {getMagicTower(2, getGuard(3, getReward('guard', 'maget2')))},
-		towns = {getTown(3, getGuard(4, getReward('guard', 'BZ14townt3')), getReward('townt3', 'BigZone14')),
-                 getTown(4, getGuard(4, getReward('guard', 'BZ14townt4')), getReward('townt4', 'BigZone14', playerRace))},
+		towns = {getTown(3, getGuard(3, getReward('guard', 'BZtownt3')), getReward('townt3', 'BigZone14')),
+                 getTown(4, getGuard(4, getReward('guard', 'BZtownt4')), getReward('townt4', 'BigZone', playerRace))},
         bags = getBags(9, getReward('bags', 'BigZone')),
 	}
 end
@@ -1521,15 +1371,16 @@ function getBigZone2(zoneId, playerRace, zoneSize)
 			getStack(3, 4, getReward('stack2', 'BigZone')),
             getStack(3, 5, getReward('stack3', 'BigZone')),
             getStack(4, 4, getReward('stack4', 'BigZone')),
-            getStack(4, 6, getReward('stack5', 'BigZone'))},
+            getStack(4, 6, getReward('stack5', 'BigZone')),
+            getStack(5, 1, getReward('stackArt', 'BigZone'))},
         mercenaries = {getMercenaries25(getGuard(3))},
         ruins = {getRuins({min = 320, max = 380}, getGuardRuins(3), getReward('ruinst3', 'BigZone25')),
                  getRuins({min = 420, max = 530}, getGuardRuins(4), getReward('ruinst4', 'BigZone25'))},
-        merchants = {{goods = {items = getReward('merchants', 'BigZone25')},
+        merchants = {{goods = {items = getReward('merchants', 'BigZone')},
                       guard = getGuard(3, getReward('guard', 'merchantst2'))}},
         mages = {getMagicTower(2, getGuard(3, getReward('guard', 'maget2')))},
-		towns = {getTown(3, getGuard(3, getReward('guard', 'BZ25townt3')), getReward('townt3', 'BigZone25')),
-                 getTown(4, getGuard(4, getReward('guard', 'BZ25townt4')), getReward('townt4', 'BigZone25', playerRace))},
+		towns = {getTown(3, getGuard(3, getReward('guard', 'BZtownt3')), getReward('townt3', 'BigZone25')),
+                 getTown(4, getGuard(4, getReward('guard', 'BZtownt4')), getReward('townt4', 'BigZone', playerRace))},
         bags = getBags(9, getReward('bags', 'BigZone'))
 	}
 end
@@ -1545,15 +1396,16 @@ function getBigZone4(zoneId, playerRace, zoneSize)
 			getStack(3, 4, getReward('stack2', 'BigZone')),
             getStack(3, 5, getReward('stack3', 'BigZone')),
             getStack(4, 4, getReward('stack4', 'BigZone')),
-            getStack(4, 6, getReward('stack5', 'BigZone'))},
+            getStack(4, 6, getReward('stack5', 'BigZone')),
+            getStack(5, 1, getReward('stackArt', 'BigZone'))},
         ruins = {getRuins({ min = 420, max = 530 }, getGuardRuins(4), getReward('ruinst3', 'BigZone14')),
                  getRuins({ min = 420, max = 530 }, getGuardRuins(4), getReward('ruinst4', 'BigZone14'))},
         mercenaries = {getMercenaries14(getGuard(3))},
-        merchants = {{goods = {items = getReward('merchants', 'BigZone14')},
+        merchants = {{goods = {items = getReward('merchants', 'BigZone')},
                       guard = getGuard(3, getReward('guard', 'merchantst2'))}},
         mages = {getMagicTower(2, getGuard(3, getReward('guard', 'maget2')))},
-		towns = {getTown(3, getGuard(3, getReward('guard', 'BZ14townt3')), getReward('townt3', 'BigZone14')),
-                 getTown(4, getGuard(4, getReward('guard', 'BZ14townt4')), getReward('townt4', 'BigZone14', playerRace))},
+		towns = {getTown(3, getGuard(3, getReward('guard', 'BZtownt3')), getReward('townt3', 'BigZone14')),
+                 getTown(4, getGuard(4, getReward('guard', 'BZtownt4')), getReward('townt4', 'BigZone', playerRace))},
         bags = getBags(9, getReward('bags', 'BigZone'))
 	}
 end
@@ -1569,15 +1421,16 @@ function getBigZone5(zoneId, playerRace, zoneSize)
 			getStack(3, 4, getReward('stack2', 'BigZone')),
             getStack(3, 5, getReward('stack3', 'BigZone')),
             getStack(4, 4, getReward('stack4', 'BigZone')),
-            getStack(4, 6, getReward('stack5', 'BigZone'))},
+            getStack(4, 6, getReward('stack5', 'BigZone')),
+            getStack(5, 1, getReward('stackArt', 'BigZone'))},
         mercenaries = {getMercenaries25(getGuard(3))},
         ruins = {getRuins({ min = 320, max = 380 }, getGuardRuins(3), getReward('ruinst3', 'BigZone25')),
                  getRuins({ min = 420, max = 530 }, getGuardRuins(4), getReward('ruinst4', 'BigZone25'))},
-        merchants = {{goods = {items = getReward('merchants', 'BigZone25')},
+        merchants = {{goods = {items = getReward('merchants', 'BigZone')},
                       guard = getGuard(3, getReward('guard', 'merchantst2'))}},
         mages = {getMagicTower(2, getGuard(3, getReward('guard', 'maget2')))},
-		towns = {getTown(3, getGuard(3, getReward('guard', 'BZ25townt3') ), getReward('townt3', 'BigZone25')),
-                 getTown(4, getGuard(4, getReward('guard', 'BZ25townt4') ), getReward('townt4', 'BigZone25', playerRace))},
+		towns = {getTown(3, getGuard(3, getReward('guard', 'BZtownt3') ), getReward('townt3', 'BigZone25')),
+                 getTown(4, getGuard(4, getReward('guard', 'BZtownt4') ), getReward('townt4', 'BigZone', playerRace))},
         bags = getBags(9, getReward('bags', 'BigZone'))
 	}
 end
@@ -1645,9 +1498,9 @@ end
 -- Описывает соединение зон
 function getConnections()
 	return {
-		{from = 0, to = 1, guard = getGuard( 3, getReward('guard', 'BigZone14'))},
+		{from = 0, to = 1, guard = getGuard( 3, getReward('guard', 'BigZone'))},
 		-- {from = 0, to = 1, guard = getGuard( 4, getReward('guard', 'BigZone14'))},
-		{from = 0, to = 5, guard = getGuard( 3, getReward('guard', 'BigZone25'))},
+		{from = 0, to = 5, guard = getGuard( 3, getReward('guard', 'BigZone'))},
 		-- {from = 0, to = 5, guard = getGuard( 4, getReward('guard', 'BigZone25'))},
 		{from = 1, to = 6, guard = getGuard( 6, getReward('guard', 'GO'))},
 		{from = 2, to = 6, guard = getGuard( 6, getReward('guard', 'GO'))},
@@ -1655,10 +1508,10 @@ function getConnections()
         {from = 5, to = 4, guard = getGuard( 5, getReward('guard', 'BZ45'))},
         {from = 5, to = 6, guard = getGuard( 6, getReward('guard', 'GO'))},
         {from = 4, to = 6, guard = getGuard( 6, getReward('guard', 'GO'))},
-        {from = 3, to = 4, guard = getGuard( 3, getReward('guard', 'BigZone14'))},
+        {from = 3, to = 4, guard = getGuard( 3, getReward('guard', 'BigZone'))},
         -- {from = 3, to = 4, guard = getGuard( 4, getReward('guard', 'BigZone14'))},
         -- {from = 3, to = 2, guard = getGuard( 4, getReward('guard', 'BigZone25'))},
-        {from = 3, to = 2, guard = getGuard( 3, getReward('guard', 'BigZone25'))},
+        {from = 3, to = 2, guard = getGuard( 3, getReward('guard', 'BigZone'))},
 	}
 end
 
