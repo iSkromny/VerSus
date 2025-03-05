@@ -1740,7 +1740,7 @@ function getTemplateContents(races)
 end
 
 template = {
-	name = 'VerSus 1.0',
+	name = 'VerSus 1.1',
 	description = 'VerSus 1.0 by iSkromny, sMNS 2, 72x72, 2 players, \nTimer: First day: 420, next days: 360',
     minSize = 72,
 	maxSize = 72,
